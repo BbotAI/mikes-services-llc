@@ -62,7 +62,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue
 .contact-form input,.contact-form textarea{padding:10px;border:1px solid #e3e8ef;border-radius:6px}
 .contact-form button{width:100%;border:none}
 
-.site-footer{background:var(--color-secondary);color:#fff;padding:20px 0}
+.site-footer{background:var(--color-secondary);color:#fff;padding:20px;padding-bottom:80px}
 .footer-inner{display:flex;justify-content:space-between;align-items:center}
 .footer-inner a{color:#ffffff;text-decoration:none;font-weight:600}
 .footer-inner a:hover,.footer-inner a:focus{color:var(--color-accent)}
