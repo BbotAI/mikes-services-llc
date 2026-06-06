@@ -1,0 +1,15 @@
+{
+  "logo": "https://example.com/mikes-logo.webp",
+  "hero": "https://example.com/excavation-hero.webp",
+  "services": {
+    "septic": "https://example.com/septic-installation.webp",
+    "excavation": "https://example.com/excavation-site-prep.webp",
+    "landClearing": "https://example.com/land-clearing.webp",
+    "demolition": "https://example.com/demolition-removal.webp"
+  },
+  "featured": {
+    "featuredImage1": "https://example.com/featured-1.webp",
+    "septicHero": "https://example.com/septic-hero.webp",
+    "featuredImage2": "https://example.com/featured-2.webp"
+  }
+}
