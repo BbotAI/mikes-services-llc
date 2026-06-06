@@ -55,6 +55,8 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue
 .about p{color:var(--muted)}
 
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact-info a{color:var(--color-secondary);font-weight:600;text-decoration:none}
+.contact-info a:hover,.contact-info a:focus{color:var(--color-accent)}
 .contact-form form{display:flex;flex-direction:column;gap:10px}
 .contact-form label{font-size:0.9rem}
 .contact-form input,.contact-form textarea{padding:10px;border:1px solid #e3e8ef;border-radius:6px}
@@ -62,6 +64,8 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue
 
 .site-footer{background:var(--color-secondary);color:#fff;padding:20px 0}
 .footer-inner{display:flex;justify-content:space-between;align-items:center}
+.footer-inner a{color:#ffffff;text-decoration:none;font-weight:600}
+.footer-inner a:hover,.footer-inner a:focus{color:var(--color-accent)}
 .small{font-size:0.85rem;opacity:0.9}
 
 .mobile-cta{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;background:#fff;border-radius:999px;box-shadow:0 8px 24px rgba(11,24,40,0.12);overflow:hidden}
@@ -75,6 +79,8 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue
   .featured-service-grid{grid-template-columns:1fr}
   .nav{display:none}
   .nav-toggle{display:inline-block}
+  .header-ctas{gap:8px}
+  .header-ctas .phone{display:none}
   .header-ctas .btn-primary{display:none}
   .contact-grid{grid-template-columns:1fr}
   .mobile-cta{width:92%;left:4%}
