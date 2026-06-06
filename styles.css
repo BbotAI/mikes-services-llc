@@ -84,6 +84,7 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue
   .header-ctas{gap:8px}
   .header-ctas .phone{display:none}
   .header-ctas .btn-primary{display:none}
+  .header-logo{display:none !important}
   .contact-grid{grid-template-columns:1fr}
   .mobile-cta{width:92%;left:4%}
 }
