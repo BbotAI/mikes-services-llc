@@ -1,15 +1,15 @@
 {
-  "logo": "https://example.com/mikes-logo.webp",
-  "hero": "https://example.com/excavation-hero.webp",
+  "logo": "./images/logo.webp",
+  "hero": "./images/mikes-services-featured.webp",
   "services": {
-    "septic": "https://example.com/septic-installation.webp",
-    "excavation": "https://example.com/excavation-site-prep.webp",
-    "landClearing": "https://example.com/land-clearing.webp",
-    "demolition": "https://example.com/demolition-removal.webp"
+    "septic": "./images/mikes-services-septic.webp",
+    "excavation": "./images/mikes-services-excavation.webp",
+    "landClearing": "./images/mikes-services-land-clearing.webp",
+    "demolition": "./images/mikes-services-demolition.webp"
   },
   "featured": {
-    "featuredImage1": "https://example.com/featured-1.webp",
-    "septicHero": "https://example.com/septic-hero.webp",
-    "featuredImage2": "https://example.com/featured-2.webp"
+    "featuredImage1": "./images/mikes-services-featured.webp",
+    "septicHero": "./images/mikes-services-septic-hero.webp",
+    "featuredImage2": "./images/mikes-services-featured-2.webp"
   }
 }
