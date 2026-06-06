@@ -21,8 +21,8 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue
 .brand .tag{font-size:0.8rem;opacity:0.9}
 
 /* Logo Showcase */
-.logo-showcase{background:linear-gradient(180deg,rgba(10,24,48,0.02),transparent);padding:48px 24px;text-align:center}
-.logo-display{max-height:280px;width:auto;border-radius:8px}
+.logo-showcase{background:linear-gradient(180deg,rgba(10,24,48,0.02),transparent);padding:48px 24px;text-align:center;display:flex;justify-content:center}
+.logo-display{max-height:280px;width:auto;max-width:100%;border-radius:8px}
 .nav{display:flex;gap:18px}
 .nav a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
 .header-ctas{display:flex;align-items:center;gap:12px}
