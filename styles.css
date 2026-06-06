@@ -1,0 +1,83 @@
+:root{
+  --color-primary: #1A73E8;
+  --color-secondary: #0F4C81;
+  --color-accent: #F4B400;
+  --text: #0b1726;
+  --muted: #556777;
+  --bg: #ffffff;
+  --radius: 8px;
+  --max-width: 1100px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;line-height:1.5;color:var(--text);background:var(--bg);margin:0}
+.container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+.site-header{background:linear-gradient(180deg,var(--color-secondary),#0b3358);color:#fff;position:sticky;top:0;z-index:40}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.brand .logo{font-family:Poppins,Inter,system-ui;font-weight:700;color:#fff;text-decoration:none;font-size:1.15rem}
+.brand .tag{font-size:0.8rem;opacity:0.9}
+.nav{display:flex;gap:18px}
+.nav a{color:rgba(255,255,255,0.95);text-decoration:none;font-weight:600}
+.header-ctas{display:flex;align-items:center;gap:12px}
+.header-ctas .phone{color:#fff;text-decoration:none;font-weight:600}
+.btn{display:inline-block;padding:10px 16px;border-radius:6px;text-decoration:none;cursor:pointer}
+.btn-primary{background:var(--color-primary);color:#fff}
+.btn-secondary{background:transparent;border:2px solid rgba(255,255,255,0.12);color:#fff}
+.btn-outline{border:2px solid var(--color-secondary);color:var(--color-secondary);background:transparent}
+.nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.2rem}
+
+.hero{padding:48px 0;background:linear-gradient(180deg,rgba(10,24,48,0.02),transparent)}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.hero-copy h1{font-family:Poppins,Inter;font-size:2rem;margin:0 0 12px}
+.lead{color:var(--muted);margin-bottom:16px}
+.hero-ctas{display:flex;gap:10px;margin-bottom:12px}
+.trust-list{display:flex;gap:12px;list-style:none;padding:0;margin:12px 0 0;color:var(--muted)}
+.hero-media img{width:100%;height:auto;border-radius:10px;object-fit:cover}
+
+.section{padding:44px 0}
+.section h2{font-family:Poppins,Inter;margin:0 0 8px}
+.section-sub{color:var(--muted);margin-bottom:18px}
+
+.service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.service-card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 6px 18px rgba(12,30,50,0.06)}
+.service-card h3{margin:10px 0}
+.service-card p{color:var(--muted);margin:0 0 12px}
+.service-media img{width:100%;height:160px;object-fit:cover;border-radius:6px}
+
+.featured{display:flex;align-items:center;padding:40px 0;background:linear-gradient(180deg,rgba(10,24,48,0.02),transparent)}
+.featured-inner{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+.featured-media img{width:100%;height:auto;border-radius:8px}
+
+.featured-service-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+
+.about p{color:var(--muted)}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact-form form{display:flex;flex-direction:column;gap:10px}
+.contact-form label{font-size:0.9rem}
+.contact-form input,.contact-form textarea{padding:10px;border:1px solid #e3e8ef;border-radius:6px}
+.contact-form button{width:100%;border:none}
+
+.site-footer{background:var(--color-secondary);color:#fff;padding:20px 0}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+.small{font-size:0.85rem;opacity:0.9}
+
+.mobile-cta{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);display:flex;background:#fff;border-radius:999px;box-shadow:0 8px 24px rgba(11,24,40,0.12);overflow:hidden}
+.mobile-cta-item{padding:10px 14px;display:block;text-decoration:none;color:var(--color-secondary);font-weight:600}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .service-grid{grid-template-columns:1fr}
+  .featured-inner{grid-template-columns:1fr}
+  .featured-service-grid{grid-template-columns:1fr}
+  .nav{display:none}
+  .nav-toggle{display:inline-block}
+  .header-ctas .btn-primary{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .mobile-cta{width:92%;left:4%}
+}
+
+:focus{outline:3px solid color-mix(in srgb, var(--color-primary) 20%, transparent);outline-offset:3px}
