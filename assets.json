@@ -1,15 +1,12 @@
 {
   "logo": "./images/logo.webp",
-  "hero": "./images/mikes-services-featured.webp",
   "services": {
-    "septic": "./images/mikes-services-septic.webp",
-    "excavation": "./images/mikes-services-excavation.webp",
-    "landClearing": "./images/mikes-services-land-clearing.webp",
-    "demolition": "./images/mikes-services-demolition.webp"
+    "septic": "./images/septic.webp",
+    "excavation": "./images/excavation.webp",
+    "landClearing": "./images/landClearing.webp",
+    "demolition": "./images/demolition.webp"
   },
   "featured": {
-    "featuredImage1": "./images/mikes-services-featured.webp",
-    "septicHero": "./images/mikes-services-septic-hero.webp",
-    "featuredImage2": "./images/mikes-services-featured-2.webp"
+    "featuredImage2": "./images/featured.webp"
   }
 }
