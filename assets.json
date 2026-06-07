@@ -5,7 +5,7 @@
     "excavation": "./images/excavation.webp",
     "landClearing": "./images/landClearing.webp",
     "demolition": "./images/demolition.webp",
-    "buildingPad": "./images/buildingPad.webp"
+    "buildingPad": "./images/excavation.webp"
   },
   "featured": {
     "featuredImage2": "./images/featured.webp"
