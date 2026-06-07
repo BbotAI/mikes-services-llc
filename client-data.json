@@ -1,8 +1,21 @@
 {
   "business_name": "Mike's Services LLC",
-  "city": "Tescott",
+  "city": "Salina",
   "state": "Kansas",
-  "services": ["Septic installation in Tescott Kansas", "Excavation project in Tescott, Kansas", "Land clearing job in Tescott, Kansas", "Demolition removal in Tescott, Kansas"],
+  "address": "481 E Euclid Ave, Salina, KS 67401",
+  "phone": "785-488-7925",
+  "email": "mradams@twinvalley.net",
+  "url": "https://mikeservicesllc.com",
+  "google_business_url": "",
+  "facebook_page_url": "https://www.facebook.com/share/1H9FXaNLYL/",
+  "formspree_endpoint": "https://formspree.io/f/xrevelll",
+  "services": [
+    "Septic Installation in Salina Kansas",
+    "Excavation and Trenching in Central Kansas",
+    "Land Clearing in Central Kansas",
+    "Demolition & Removal in Central Kansas",
+    "Building Pad & Site Prep in Central Kansas"
+  ],
   "brand_colors": {
     "primary": "#1A73E8",
     "secondary": "#0F4C81",
@@ -11,15 +24,8 @@
   "font_heading": "Poppins",
   "font_body": "Inter",
   "tone": "clean, professional, trustworthy, blue-collar premium, local",
-  "phone": "785-488-7925",
-  "email": "mradams@twinvalley.net",
-  "address": "337 Evergreen Rd, Tescott, KS, 67484",
-  "google_business_url": "",
-  "facebook_page_url": "",
-  "formspree_endpoint": "https://formspree.io/f/xrevelll",
-
   "toggles": {
-    "STATIC_ONE_PAGE": "yes",
+    "STATIC_ONE_PAGE": "no",
     "INCLUDE_HOME": "yes",
     "INCLUDE_ABOUT": "yes",
     "INCLUDE_CONTACT": "yes",
@@ -27,6 +33,9 @@
     "INCLUDE_GBP_SECTION": "yes",
     "INCLUDE_FACEBOOK_SECTION": "yes",
     "INCLUDE_FEATURED_IMAGE": "yes",
-    "INCLUDE_FEATURED_PRODUCT": "yes"
+    "INCLUDE_FEATURED_PRODUCT": "yes",
+    "INCLUDE_SERVICE_PAGES": "yes",
+    "INCLUDE_SERVICE_AREA_PAGE": "yes",
+    "INCLUDE_FAQ_PAGE": "yes"
   }
 }

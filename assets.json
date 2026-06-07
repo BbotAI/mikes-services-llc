@@ -4,7 +4,8 @@
     "septic": "./images/septic.webp",
     "excavation": "./images/excavation.webp",
     "landClearing": "./images/landClearing.webp",
-    "demolition": "./images/demolition.webp"
+    "demolition": "./images/demolition.webp",
+    "buildingPad": "./images/buildingPad.webp"
   },
   "featured": {
     "featuredImage2": "./images/featured.webp"
