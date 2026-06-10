@@ -49,6 +49,7 @@ a { transition: color 0.2s; }
   top: 0;
   z-index: 40;
   box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  overflow: visible;
 }
 
 .header-inner {
@@ -116,6 +117,9 @@ a { transition: color 0.2s; }
   padding: 4px 8px;
 }
 
+.nav .nav-phone,
+.nav .nav-cta { display: none; }
+
 /* ============================================================
    BUTTONS
    ============================================================ */
@@ -142,8 +146,8 @@ a { transition: color 0.2s; }
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background: #1558b0;
-  border-color: #1558b0;
+  background: #0F2A3D;
+  border-color: #0F2A3D;
 }
 
 .btn-secondary {
@@ -351,6 +355,38 @@ a { transition: color 0.2s; }
 }
 
 /* ============================================================
+   HERO IMAGES — index.html and septic.html
+   ============================================================ */
+
+.hero--image {
+  background-image: linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
+                    url('images/hero.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.hero--septic {
+  background-image: linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
+                    url('images/septicHero.webp');
+}
+
+.hero--image .hero-copy h1        { color: #fff; }
+.hero--image .lead                { color: rgba(255,255,255,0.88); }
+.hero--image .trust-list          { color: rgba(255,255,255,0.82); }
+.hero--image .trust-list li::before { color: var(--color-accent); }
+
+.hero--image .btn-outline {
+  border-color: rgba(255,255,255,0.85);
+  color: #fff;
+}
+.hero--image .btn-outline:hover,
+.hero--image .btn-outline:focus {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border-color: #fff;
+}
+
+/* ============================================================
    SERVICE AREAS
    ============================================================ */
 
@@ -415,7 +451,7 @@ a { transition: color 0.2s; }
 
 .faq-item {
   background: #fff;
-  border: 1px solid #dde3ec;
+  border: 1px solid #DDD0BA;
   border-radius: 10px;
   padding: 20px 22px;
   box-shadow: 0 2px 8px rgba(12,30,50,0.05);
@@ -587,10 +623,72 @@ a { transition: color 0.2s; }
   .featured-inner { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; }
-  .nav { display: none; }
   .nav-toggle { display: inline-block; }
   .header-ctas .phone { display: none; }
   .header-ctas .btn-primary { display: none; }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #1C3D5A;
+    z-index: 30;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s ease;
+  }
+
+  .nav.nav--open { max-height: 440px; }
+
+  .nav a {
+    padding: 0 24px;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 1rem;
+    color: rgba(255,255,255,0.92);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .nav a:hover,
+  .nav a:focus {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border-bottom-color: rgba(255,255,255,0.1);
+  }
+
+  .nav .nav-phone {
+    display: flex;
+    font-weight: 700;
+    font-size: 1.05rem;
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+  }
+
+  .nav .nav-cta {
+    display: inline-flex;
+    margin: 14px 24px 16px;
+    justify-content: center;
+    border-bottom: none;
+    min-height: auto;
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+
+  .nav .nav-cta:hover,
+  .nav .nav-cta:focus {
+    background: #a85a0c;
+    border-color: #a85a0c;
+    color: #fff;
+  }
 }
 
 @media (max-width: 600px) {

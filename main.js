@@ -134,12 +134,32 @@ function initNav() {
   const nav = document.getElementById('nav');
   if (!navToggle || !nav) return;
 
-  navToggle.addEventListener('click', function () {
-    if (nav.style.display === 'flex') {
-      nav.style.display = 'none';
-    } else {
-      nav.style.display = 'flex';
-      nav.style.flexDirection = 'column';
+  function openNav() {
+    nav.classList.add('nav--open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    navToggle.textContent = '✕';
+  }
+
+  function closeNav() {
+    nav.classList.remove('nav--open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.textContent = '☰';
+  }
+
+  navToggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    nav.classList.contains('nav--open') ? closeNav() : openNav();
+  });
+
+  nav.querySelectorAll('a').forEach(function (link) {
+    link.addEventListener('click', closeNav);
+  });
+
+  document.addEventListener('click', function (e) {
+    if (nav.classList.contains('nav--open') &&
+        !nav.contains(e.target) &&
+        !navToggle.contains(e.target)) {
+      closeNav();
     }
   });
 }
