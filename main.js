@@ -192,6 +192,27 @@ function initYear() {
 }
 
 // ============================================================
+// SCROLL TO TOP BUTTON
+// ============================================================
+
+function initScrollTop() {
+  const scrollTopBtn = document.getElementById('scrollTop');
+  if (!scrollTopBtn) return;
+
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 400) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+
+  scrollTopBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// ============================================================
 // INIT — runs on DOM ready
 // ============================================================
 
@@ -200,4 +221,5 @@ document.addEventListener('DOMContentLoaded', function () {
   initNav();
   initSmoothScroll();
   initYear();
+  initScrollTop();
 });
