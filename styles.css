@@ -738,9 +738,14 @@ a { transition: color 0.2s; }
     padding-bottom: calc(10px + env(safe-area-inset-bottom));
   }
 
-  /* Push page content above the fixed bar so footer is never obscured */
+  /* Body scroll clearance — ensures page scrolls past the fixed bar */
   body {
-    padding-bottom: calc(70px + env(safe-area-inset-bottom));
+    padding-bottom: calc(90px + env(safe-area-inset-bottom));
+  }
+
+  /* Footer internal clearance — footer content lifts above the bar */
+  .site-footer {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
   }
 }
 
