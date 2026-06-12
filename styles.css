@@ -734,6 +734,13 @@ a { transition: color 0.2s; }
     justify-content: space-around;
     align-items: center;
     padding: 10px 0;
+    /* Respect iPhone home bar / notch */
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+
+  /* Push page content above the fixed bar so footer is never obscured */
+  body {
+    padding-bottom: calc(70px + env(safe-area-inset-bottom));
   }
 }
 
