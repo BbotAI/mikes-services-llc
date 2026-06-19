@@ -353,6 +353,7 @@ a { transition: color 0.2s; }
 .featured-media img {
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 9;
   border-radius: 10px;
   box-shadow: var(--shadow);
 }
