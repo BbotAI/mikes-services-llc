@@ -873,3 +873,15 @@ a { transition: color 0.2s; }
 }
 .blog-callout a { color: var(--color-accent); font-weight: 600; }
 .blog-callout a:hover { text-decoration: underline; }
+
+/* ── Emergency Banner ────────────────────────────── */
+.emergency-banner {
+  background: #8B0000;
+  color: #fff;
+  text-align: center;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.emergency-banner a { color: #FFD700; text-decoration: none; font-weight: 700; }
+.emergency-banner a:hover { text-decoration: underline; }
