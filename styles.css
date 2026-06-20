@@ -533,6 +533,8 @@ a { transition: color 0.2s; }
   transition: transform 0.18s ease, border-color 0.18s ease;
   display: inline-block;
   cursor: default;
+  max-width: 100%;
+  word-break: break-word;
 }
 
 .community-tag:hover {

@@ -128,11 +128,11 @@
     </section>
 
     <!-- CITIES GRID — clean static HTML, no template syntax -->
-    <section class="section" style="background:var(--bg-subtle)">
+    <section class="section" style="background:var(--bg-subtle);overflow-x:hidden">
       <div class="container">
         <h2>Communities We Serve</h2>
         <p class="section-sub">Mike's Services LLC regularly works in and around these Central Kansas communities.</p>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:900px">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:min(900px,100%);box-sizing:border-box;padding:0 16px">
           <div class="community-tag">Salina</div>
           <div class="community-tag">Tescott</div>
           <div class="community-tag">Bennington</div>
