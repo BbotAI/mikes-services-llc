@@ -530,6 +530,12 @@ a { transition: color 0.2s; }
   color: var(--color-primary, #1C3D5A);
   background: transparent;
   white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.community-tag:hover {
+  background: var(--color-primary, #1C3D5A);
+  color: #ffffff;
 }
 
 .community-tags {
