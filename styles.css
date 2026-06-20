@@ -519,36 +519,32 @@ a { transition: color 0.2s; }
    ============================================================ */
 
 .community-tag {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 10px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 2px solid var(--color-primary, #1C3D5A);
+  border-radius: 50px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #1C3D5A;
-  border: 1.5px solid #1C3D5A;
-  border-left: 3px solid #1C3D5A;
-  box-shadow:
-    0 1px 4px rgba(12,30,50,0.08),
-    0 3px 10px rgba(12,30,50,0.06);
-  transition: transform 0.18s ease, border-color 0.18s ease;
-  display: inline-block;
-  cursor: default;
-  max-width: 100%;
-  word-break: break-word;
+  color: var(--color-primary, #1C3D5A);
+  background: transparent;
+  white-space: nowrap;
 }
 
-.community-tag:hover {
-  transform: translateY(-2px);
-  border-color: #C76B0F;
+.community-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 8px 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  justify-content: flex-start;
 }
 
 #service-areas {
   min-height: 200px;
   contain: layout;
-}
-
-.community-tags, .tag-grid, [class*="tag"] {
-  min-height: 48px;
 }
 
 /* ============================================================
