@@ -540,6 +540,15 @@ a { transition: color 0.2s; }
   border-color: #C76B0F;
 }
 
+#service-areas {
+  min-height: 200px;
+  contain: layout;
+}
+
+.community-tags, .tag-grid, [class*="tag"] {
+  min-height: 48px;
+}
+
 /* ============================================================
    CONTACT
    ============================================================ */
