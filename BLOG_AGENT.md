@@ -1,6 +1,6 @@
 # BLOG_AGENT.md — Mike's Services LLC
 # Permanent file — never delete this from the project folder.
-# Last updated: 2026-06-25
+# Last updated: 2026-06-25 (9 cards live)
 
 ---
 
@@ -116,8 +116,9 @@ NOTE: Slots reset to PLACEHOLDER here for template use — verify actual state a
   Slot 4: LIVE — Excavation & Utility Trenching in Central Kansas
   Slot 5: LIVE — Demolition Contractor in Salina KS — What to Expect
   Slot 6: LIVE — Storm Damage Cleanup & Emergency Site Work in Central Kansas
-  Slot 7: PLACEHOLDER
-  Slot 8: PLACEHOLDER
+  Slot 7: LIVE — Questions to Ask a Septic Contractor in Rural Kansas Before You Hire
+  Slot 8: LIVE — Septic Installation Cost Kansas: What Rural Homeowners Pay in Central KS
+  Slot 9: LIVE — How Often Should a Septic Tank Be Pumped & Maintained in Kansas?
 
 ---
 
