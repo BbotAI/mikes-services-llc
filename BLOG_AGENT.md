@@ -1,6 +1,18 @@
 # BLOG_AGENT.md — Mike's Services LLC
 # Permanent file — never delete this from the project folder.
-# Last updated: 2026-06-18
+# Last updated: 2026-06-25
+
+---
+
+## CLIENT BLOG INFO
+
+  Client Name:      Mike's Services LLC
+  Client Domain:    mikeservicesllc.com
+  Blog Subdomain:   blog.mikeservicesllc.com
+  Blogger Blog URL: mikeservicesllc.blogspot.com
+  Blog ID:          5880855544549043087
+  Agency Brain ID:  MIKES_SERVICES_LLC
+  Service pages:    septic.html, land-clearing.html, excavation.html, demolition.html
 
 ---
 
@@ -98,12 +110,12 @@ When you receive an "Add blog post:" command:
 Update this manually after each push so you always know where you stand.
 NOTE: Slots reset to PLACEHOLDER here for template use — verify actual state against blog.html.
 
-  Slot 1: PLACEHOLDER
-  Slot 2: PLACEHOLDER
-  Slot 3: PLACEHOLDER
-  Slot 4: PLACEHOLDER
-  Slot 5: PLACEHOLDER
-  Slot 6: PLACEHOLDER
+  Slot 1: LIVE — How Much Does Septic System Installation Cost in Kansas?
+  Slot 2: LIVE — Land Clearing in Central Kansas — What It Costs and What to Expect
+  Slot 3: LIVE — Septic Installation Permits in Kansas — What You Need to Know
+  Slot 4: LIVE — Excavation & Utility Trenching in Central Kansas
+  Slot 5: LIVE — Demolition Contractor in Salina KS — What to Expect
+  Slot 6: LIVE — Storm Damage Cleanup & Emergency Site Work in Central Kansas
   Slot 7: PLACEHOLDER
   Slot 8: PLACEHOLDER
 
@@ -126,10 +138,10 @@ Placeholder img: images/blog-placeholder.webp
 ## EXAMPLE COMMANDS
 
 Add a new post (slots available):
-  Add blog post: https://mikeservicesllc.blogspot.com/2026/07/building-pad-prep-kansas.html
+  Add blog post: https://blog.mikeservicesllc.com/2026/07/building-pad-prep-kansas.html
 
 Add a post when all 8 slots are full:
-  Add blog post: https://mikeservicesllc.blogspot.com/2026/07/your-post.html
+  Add blog post: https://blog.mikeservicesllc.com/2026/07/your-post.html
   (Claude Code adds it as card 9 automatically)
 
 Check how many slots are available:
