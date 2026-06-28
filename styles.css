@@ -465,6 +465,16 @@ a { transition: color 0.2s; }
   gap: 48px;
   align-items: start;
 }
+.about-photo-wrapper {
+  margin: 1.5rem 0;
+}
+.about-photo {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
 
 /* ============================================================
    FAQ — ALWAYS VISIBLE ANSWERS
