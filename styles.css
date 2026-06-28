@@ -377,14 +377,14 @@ a { transition: color 0.2s; }
 
 .hero--image {
   background-image: linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
-                    url('images/hero.webp');
+                    url('images/hero-home.webp');
   background-size: cover;
   background-position: center;
 }
 
 .hero--septic {
   background-image: linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
-                    url('images/septicHero.webp');
+                    url('images/hero-service-1.webp');
 }
 
 .hero--image .hero-copy h1        { color: #fff; }
