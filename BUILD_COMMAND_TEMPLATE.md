@@ -1,6 +1,6 @@
 # BUILD COMMAND TEMPLATE — Kansas Prairie Webworks
 ## Tier 4 Local Business Website
-## Version 5.0 — Auto-reads CLIENT_BRIEF_TEMPLATE.md
+## Version 5.3 — Auto-reads CLIENT_BRIEF_TEMPLATE.md
 ## Internal use only — kansasprairiewebworks.com
 
 ---
@@ -19,7 +19,12 @@
 ## Copy everything between the triple backticks and paste into Claude Code
 
 ```
-Read the client brief and TEMPLATE_GUIDE.md from the current working directory before writing a single line of code.
+Read INTAKE_FROM_BUILD.md, then TEMPLATE_GUIDE.md from the current working directory before writing a single line of code.
+
+AGENCY BRAIN IS THE PRIMARY SOURCE OF TRUTH.
+CLIENT_BRIEF_TEMPLATE.md is a fallback only.
+All client data comes from Agency Brain via INTAKE_FROM_BUILD.md Steps 1-5.
+Only read CLIENT_BRIEF_TEMPLATE.md if Agency Brain API is unavailable.
 
 --- FILE LOOKUP ---
 
@@ -208,14 +213,113 @@ STEP 4 — BUILD FILES IN THIS ORDER
            <link rel="preload" as="image" href="images/hero.webp" fetchpriority="high">
            This must come before font preconnects. Critical for LCP score.
 
+4j — STANDARD ADDITIONS — Apply to every HTML file on every build:
+
+     4j-1: CANONICAL TAG
+           Add to every page <head> — before <link rel="preconnect">:
+             <link rel="canonical" href="https://[domain]/[filename].html">
+           Use actual client domain and exact filename per page.
+           Example: <link rel="canonical" href="https://mikeservicesllc.com/septic.html">
+           blog.html is the one page that commonly already has this — check before adding.
+
+     4j-2: ROBOTS META TAG
+           Add to every page <head> — before <link rel="preconnect">:
+             <meta name="robots" content="index, follow">
+           Place on the same line group as canonical. Both must be on every page.
+
+     4j-3: FAQPage SCHEMA
+           On any page containing .faq-item elements:
+           — Read every .faq-item <h3> (question) and <p> (answer) from the HTML.
+           — Add FAQPage JSON-LD as a second <script type="application/ld+json">
+             in <head>, after the LocalBusiness/Service schema block.
+           — Include every Q&A pair from that page — do not truncate.
+           — Do NOT add FAQPage schema to pages with no .faq-item elements
+             (contact.html, about.html, services.html, service-area.html typically).
+
+     4j-4: SCHEMA HOURS — CORRECT FORMAT
+           openingHoursSpecification must match Agency Brain hours field exactly.
+           Never assume hours — always read from Agency Brain before writing schema.
+           Split Mon-Fri and Saturday into separate objects if hours differ.
+           Standard format (Mon-Fri 8-5, Sat 8-12):
+             "openingHoursSpecification": [
+               {
+                 "@type": "OpeningHoursSpecification",
+                 "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                 "opens": "08:00",
+                 "closes": "17:00"
+               },
+               {
+                 "@type": "OpeningHoursSpecification",
+                 "dayOfWeek": ["Saturday"],
+                 "opens": "08:00",
+                 "closes": "12:00"
+               }
+             ]
+           Apply on every page that contains openingHoursSpecification — not index.html only.
+
+     4j-5: GOOGLE REVIEW LINK IN FOOTER
+           Add to .footer-right on ALL pages — after Facebook link, before Blog link:
+             <a href="[googleReviewUrl]" target="_blank" rel="noopener">Leave a Google Review ★</a>
+           Pull googleReviewUrl from Agency Brain if the field is populated.
+           If not yet available — use this placeholder comment:
+             <!-- GOOGLE BUSINESS PROFILE LINK: add anchor tag here with Google review link when ready -->
+           When GBP Place ID is confirmed later, replace across all files with:
+             <a href="https://g.page/r/[PLACE_ID]/review" target="_blank" rel="noopener">Leave a Google Review &#9733;</a>
+
+     4j-6: TESTIMONIALS SECTION ON HOMEPAGE
+           Add to index.html between the featured section and the service areas section.
+           Pull from Agency Brain bestReview field. If multiple reviews — build a
+           3-column .service-grid with one .service-card per review:
+             — Orange &#9733;&#9733;&#9733;&#9733;&#9733; stars above each quote
+             — Italic quote text
+             — Reviewer name and source (e.g. "— Name, via Facebook")
+           Include a "Leave Us a Google Review" btn btn-outline CTA below the grid.
+           Use googleReviewUrl from Agency Brain or PLACEHOLDER_PLACE_ID if not yet available.
+
 ---
 
-STEP 5 — CRITICAL CONTENT CHECK
+STEP 5 — PULL APPROVED IMAGES FROM AGENCY BRAIN
+
+Website images come from the client portal.
+Clients upload via bbotai.github.io/kpw-client-portal
+Images save to Cloudinary and Agency Brain automatically.
+
+Pull website images from Agency Brain:
+GET [v33 URL]?action=getClient&clientId=CLIENT_ID
+
+Filter imageLibraryUrls where type === "website"
+Map slot names to filenames:
+  hero-home       → images/hero-home.webp
+  logo            → images/logo.webp
+  featured-1      → images/featured-1.webp
+  hero-service-1  → images/hero-service-1.webp
+  hero-service-2  → images/hero-service-2.webp
+  hero-service-3  → images/hero-service-3.webp
+  hero-service-4  → images/hero-service-4.webp
+  hero-service-5  → images/hero-service-5.webp
+  about-team      → images/about-team.webp
+  blog-placeholder→ images/blog-placeholder.webp
+
+Download each image from Cloudinary URL.
+Save to images/ folder with correct filename.
+If no website images exist yet:
+  Use gradient heroes on service pages.
+  Note missing images in PROGRESS.md.
+  Client can upload via portal later.
+  Run image placement prompt to update.
+
+Project photos (type="project") are used
+for content generation only — not placed
+on website pages directly.
+
+---
+
+STEP 6 — CRITICAL CONTENT CHECK
 
 Search every single file for any remaining instances of previous client data.
-If building from a template that previously contained Mike's Services content, check for:
-  Mike, Adams, 785-488-7925, 7854887925, 481 E Euclid,
-  mikeservicesllc, mradams, Mike's Services
+Check for any previous client data from prior builds.
+  Zero previous client content anywhere.
+  Every field must match current client from Agency Brain only.
 
 Every phone number, address, name, email, and URL
 must come from the client brief only. Zero previous client content anywhere.
@@ -227,7 +331,7 @@ Also confirm:
 
 ---
 
-STEP 6 — WRITE PROGRESS.md
+STEP 7 — WRITE PROGRESS.md
 
 Document the following:
 - Every file created
@@ -239,7 +343,7 @@ Document the following:
 
 ---
 
-STEP 7 — COMMIT AND PUSH
+STEP 8 — COMMIT AND PUSH
 
 Stage all files.
 Commit with message: "Initial build — [Business Name from client brief]"
@@ -278,6 +382,12 @@ Confirm push succeeded and list every file in the final repo.
 - [ ] Test on mobile — sticky bar visible, scroll-to-top working
 - [ ] Submit sitemap to Google Search Console
 - [ ] Send client preview link and get approval before announcing live
+- [ ] Set up Google Analytics GA4 property for client — add tracking ID to all pages
+- [ ] Create Google Business Profile if client does not have one — service area business
+      type verifies faster than storefront; do not select storefront if no public walk-in address
+- [ ] Get GBP Place ID → find in GBP dashboard URL or via Places API
+      → replace PLACEHOLDER_PLACE_ID in review links across all HTML files
+- [ ] Verify canonical tags on every page — correct domain, correct filename, no duplicates
 
 ---
 
@@ -376,6 +486,6 @@ Log every judgment call in PROGRESS.md so Kaleb can review and override.
 
 ---
 
-*Kansas Prairie Webworks — BUILD_COMMAND_TEMPLATE.md v5.0*
+*Kansas Prairie Webworks — BUILD_COMMAND_TEMPLATE.md v5.3*
 *kansasprairiewebworks.com — Internal use only*
-*Template system derived from mikeservicesllc.com and procleaning.com*
+*Agency Brain powered — single source of truth*

@@ -64,8 +64,8 @@ When you receive an "Add blog post:" command:
      </div>
    </article>
 
-4. If all 8 card slots are already live (no placeholders left):
-   Add the new card as card #9 at the end of the grid. Do not remove any cards.
+4. If all 9 card slots are already live (no placeholders left):
+   Add the new card as card #10 at the end of the grid. Do not remove any cards.
 
 5. Check which service page the post relates to based on the post content:
    - Septic content → add blog-callout link to septic.html
