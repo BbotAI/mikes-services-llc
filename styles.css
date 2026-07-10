@@ -29,7 +29,7 @@ body {
   background: var(--bg);
   margin: 0;
 }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
 a { transition: color 0.2s; }
 
 .container {
@@ -266,6 +266,21 @@ a { transition: color 0.2s; }
   gap: 22px;
 }
 
+/* #serviceGrid is empty in the HTML and populated by main.js renderServices()
+   on DOMContentLoaded — reserve space so the featured/testimonial sections
+   below it don't jump down when the 5 cards render. Height is approximate
+   (based on card padding + 16:9 image + copy); verify against live
+   Lighthouse/PageSpeed CLS after deploy and adjust if it over/under-shoots. */
+#serviceGrid {
+  min-height: 1550px;
+}
+
+@media (max-width: 900px) {
+  #serviceGrid {
+    min-height: 1900px;
+  }
+}
+
 .service-card {
   background: #ffffff;
   border-radius: 12px;
@@ -376,6 +391,7 @@ a { transition: color 0.2s; }
    ============================================================ */
 
 .hero--image {
+  min-height: 400px;
   background-image: linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
                     url('images/hero-home.webp');
   background-size: cover;
@@ -385,6 +401,12 @@ a { transition: color 0.2s; }
 .hero--septic {
   background-image: linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)),
                     url('images/hero-service-1.webp');
+}
+
+@media (min-width: 768px) {
+  .hero--image {
+    min-height: 600px;
+  }
 }
 
 .hero--image .hero-copy h1        { color: #fff; }
