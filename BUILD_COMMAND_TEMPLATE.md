@@ -1,6 +1,6 @@
 # BUILD COMMAND TEMPLATE — Kansas Prairie Webworks
 ## Tier 4 Local Business Website
-## Version 5.3 — Auto-reads CLIENT_BRIEF_TEMPLATE.md
+## Version 5.5 — Auto-reads CLIENT_BRIEF_TEMPLATE.md
 ## Internal use only — kansasprairiewebworks.com
 
 ---
@@ -145,10 +145,97 @@ STEP 4 — BUILD FILES IN THIS ORDER
        Copyright ©:     &copy;
        Ampersand &:     &amp;
 
+     SCHEMA VALIDATION NOTE (required on every JSON-LD block):
+     - telephone must be E.164 format: "+17855777695" — no hyphens,
+       no spaces, no "+1-" prefix. Never "785-577-7695" or "+1-785-577-7695".
+     - openingHours must use standard format: either the openingHours
+       string form ("Mo-Fr 08:00-17:00") or the full openingHoursSpecification
+       array form — never plain text like "Monday through Friday, 8 to 5".
+     - priceRange must be "$", "$$", or "$$$" only.
+     - url fields must start with https://
+     - No empty required fields on any schema block (LocalBusiness,
+       FAQPage, BreadcrumbList, WebSite, Service).
+     - NEVER leave "https://your-domain.com" as a placeholder in schema,
+       Open Graph tags, sitemap.xml, or robots.txt if a real domain exists
+       in the client brief — this silently breaks OG previews, sitemap
+       submission, and schema url validation. If no domain yet, note it
+       in PROGRESS.md so Kaleb replaces it before go-live.
+
 4e — Build sitemap.xml listing all pages with client domain
      If domain is blank/placeholder — use your-domain.com as placeholder
+     and log it in PROGRESS.md as a blocker to fix before go-live.
 
-4f — Build robots.txt allowing all crawlers, referencing sitemap
+4f — Build robots.txt. Copy this exact format — do not add extra
+     crawler entries or Disallow rules beyond what's below:
+
+     ```
+     User-agent: *
+     Allow: /
+
+     User-agent: GPTBot
+     Allow: /
+
+     User-agent: Google-Extended
+     Allow: /
+
+     User-agent: OAI-SearchBot
+     Allow: /
+
+     User-agent: anthropic-ai
+     Allow: /
+
+     User-agent: ClaudeBot
+     Allow: /
+
+     User-agent: PerplexityBot
+     Allow: /
+
+     Sitemap: https://[clientdomain]/sitemap.xml
+     ```
+
+     CLOUDFLARE WARNING: If the client's DNS is proxied through Cloudflare,
+     Cloudflare's "AI Crawl Control" / Managed robots.txt feature injects
+     its OWN block of rules at the top of the served robots.txt — this can
+     silently Disallow ClaudeBot, GPTBot, Google-Extended, and
+     Applebot-Extended sitewide regardless of what this file says. The
+     origin file fix above does NOT override it. Check the LIVE robots.txt
+     (curl the domain, not the repo file) after every deploy, and if a
+     "BEGIN Cloudflare Managed content" block appears with Disallow rules
+     for AI crawlers, tell Kaleb to open Cloudflare dashboard → the zone →
+     AI Crawl Control (or Bot Management) → allow those bots at the edge.
+
+4f-2 — Build llms.txt (save to repo root, alongside robots.txt).
+     This is the emerging standard for AI search engines — tells them
+     what each page is for so they route questions to the right content.
+     Generate automatically from Agency Brain data + sitemap.xml:
+       - Pull clientName, phone, email, domain, serviceAreas, services
+         list from the client brief / Agency Brain.
+       - Pull the full page list from sitemap.xml — one line per URL
+         with a one-line description of what that page answers.
+     Format:
+     ```
+     # [Client Name] — LLM Access File
+     # [One-line business type]
+     # [City], Kansas
+
+     > [2-4 sentence business summary: what they do, who they serve,
+     owner name, service area counties].
+     Phone: [phone]
+     Website: https://[domain]
+
+     ## Pages
+
+     / — [one-line description]
+     /about.html — [one-line description]
+     [... one line per page in sitemap.xml ...]
+
+     ## Service Area
+     [serviceAreas from Agency Brain]
+
+     ## Contact
+     Phone: [phone]
+     Email: [email]
+     ```
 
 4g — Create CNAME file:
      If the domain field in the brief has a real domain — put ONLY that domain
@@ -177,6 +264,28 @@ STEP 4 — BUILD FILES IN THIS ORDER
 
            Replace [R][G][B] with client primary brand color.
            KPW navy default: r:28 g:61 b:90 (#1C3D5A)
+
+     4i-1b: Generate favicon files from client logo using Node.js sharp.
+           Logo source: images/logo.png or images/logo.webp or images/logo.jpg
+           (use whichever exists)
+
+           Sharp has no native .ico writer — install png-to-ico alongside it:
+
+           mkdir /tmp/favicongen
+           cd /tmp/favicongen
+           npm install sharp png-to-ico
+
+           Generate to REPO ROOT (not images/ folder):
+             favicon.ico          (32x32, quality 90)
+             favicon-16x16.png    (16x16)
+             favicon-32x32.png    (32x32)
+             apple-touch-icon.png (180x180)
+
+           Add to every HTML file's <head>, after existing meta/link tags:
+             <link rel="icon" type="image/x-icon" href="/favicon.ico">
+             <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+             <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+             <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
      4i-2: Build blog.html
            Sections: gradient hero (no image, no CTA buttons), blog grid
@@ -349,6 +458,22 @@ Stage all files.
 Commit with message: "Initial build — [Business Name from client brief]"
 Push to GitHub main branch.
 Confirm push succeeded and list every file in the final repo.
+
+---
+
+STEP 8B — VISUAL QA
+
+Before considering the build done, verify the live site actually renders —
+a successful push does not mean the pages work. Copy this template's
+run-kpw-tier4-template skill (.claude/skills/run-kpw-tier4-template/) into
+this client's own .claude/skills/run-[client-slug]/. Once GitHub Pages is
+live, run it against the live URL:
+
+  node driver.mjs shot <live-url> out.png
+  node driver.mjs shot <live-url> out-mobile.png --mobile
+
+Confirm both screenshots render correctly and `Console errors: none`.
+Note the result in PROGRESS.md.
 ```
 
 ---
@@ -380,6 +505,7 @@ Confirm push succeeded and list every file in the final repo.
 - [ ] Set Cloudflare SSL/TLS to Full
 - [ ] Wait for Enforce HTTPS checkbox to become clickable → check it
 - [ ] Test on mobile — sticky bar visible, scroll-to-top working
+- [ ] Visual QA run against live URL (STEP 8B) — desktop + mobile screenshots, zero console errors
 - [ ] Submit sitemap to Google Search Console
 - [ ] Send client preview link and get approval before announcing live
 - [ ] Set up Google Analytics GA4 property for client — add tracking ID to all pages
@@ -388,6 +514,20 @@ Confirm push succeeded and list every file in the final repo.
 - [ ] Get GBP Place ID → find in GBP dashboard URL or via Places API
       → replace PLACEHOLDER_PLACE_ID in review links across all HTML files
 - [ ] Verify canonical tags on every page — correct domain, correct filename, no duplicates
+- [ ] Confirm favicon.ico appears in repo root
+- [ ] Test favicon shows in browser tab
+- [ ] Test favicon shows in Google search results (may take 24-48hrs to update)
+- [ ] Validate robots.txt at robotstxt.checker.io
+- [ ] Curl the LIVE robots.txt (not the repo file) and check for a Cloudflare
+      "Managed content" block Disallowing ClaudeBot/GPTBot/Google-Extended —
+      if present, fix it in Cloudflare AI Crawl Control, not just the repo
+- [ ] Validate all schema at validator.schema.org
+- [ ] Confirm llms.txt exists in repo root and lists every page in sitemap.xml
+- [ ] Test all internal links return 200 (check href/src against repo files,
+      then spot-check the live domain with curl)
+- [ ] Check anchor text is descriptive — no standalone "click here" / "here" /
+      "this page" / "link" (blog card "Read More →" buttons are fine, they
+      have context from the card title)
 
 ---
 
@@ -486,6 +626,6 @@ Log every judgment call in PROGRESS.md so Kaleb can review and override.
 
 ---
 
-*Kansas Prairie Webworks — BUILD_COMMAND_TEMPLATE.md v5.3*
+*Kansas Prairie Webworks — BUILD_COMMAND_TEMPLATE.md v5.5*
 *kansasprairiewebworks.com — Internal use only*
 *Agency Brain powered — single source of truth*

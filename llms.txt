@@ -1,0 +1,60 @@
+# Mike's Services LLC — LLM Access File
+# Septic, excavation, land clearing, demolition contractor — Salina Kansas
+
+> Mike's Services LLC handles septic installation and repair, land
+clearing, excavation and trenching, demolition, and building pad
+prep across Central Kansas. Owner Mike Adams serves Saline, Ottawa,
+Lincoln, Dickinson, Ellsworth, and Cloud counties.
+Phone: 785-488-7925
+Website: https://mikeservicesllc.com
+
+## Pages
+
+/ — Homepage. Septic installation, excavation, land clearing,
+  building pad, and demolition services in Salina and Central
+  Kansas.
+
+/services.html — Overview of all services: septic installation,
+  excavation, trenching, land clearing, building pad prep, and
+  demolition.
+
+/septic.html — Septic system installation in Salina and Central
+  Kansas. Full system installation, excavation, grading, and
+  inspector coordination.
+
+/excavation.html — Excavation and trenching in Salina and Central
+  Kansas. Site prep, utility trenching, grading, and foundation
+  work.
+
+/land-clearing.html — Land clearing in Salina and Central Kansas.
+  Brush removal, pasture clearing, tree clearing, debris hauling.
+
+/demolition.html — Demolition and removal in Salina and Central
+  Kansas. Structure demolition, debris removal, site cleanup.
+
+/building-pad.html — Building pad and site prep in Salina and
+  Central Kansas. Precision grading, compaction, new construction
+  site prep.
+
+/service-area.html — Service areas: Salina, Tescott, and Central
+  Kansas including Saline, Ottawa, Lincoln, Dickinson, Ellsworth,
+  and Cloud counties.
+
+/about.html — About Mike Adams, founder of Mike's Services LLC,
+  locally owned contractor serving Central Kansas since 2021.
+
+/contact.html — Request a quote for septic, excavation, land
+  clearing, building pad prep, or demolition. Call 785-488-7925.
+
+/blog.html — Contractor tips and local know-how on septic costs,
+  land clearing prices, and excavation for Central Kansas property
+  owners.
+
+## Service Area
+Salina KS, Saline County, Ottawa County, Lincoln County,
+Dickinson County, Ellsworth County, Cloud County
+
+## Contact
+Phone: 785-488-7925
+Email: mradams@twinvalley.net
+Emergency: Available 24/7
