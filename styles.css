@@ -7,6 +7,7 @@
   --color-primary: #1C3D5A;
   --color-secondary: #2A4A6B;
   --color-accent: #C76B0F;
+  --color-accent-dark: #af5e0d;
   --text: #181E26;
   --muted: #5A6373;
   --bg: #ffffff;
@@ -850,8 +851,8 @@ a { transition: color 0.2s; }
     justify-content: center;
     border-bottom: none;
     min-height: auto;
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+    background: var(--color-accent-dark);
+    border-color: var(--color-accent-dark);
     color: #fff;
   }
 
