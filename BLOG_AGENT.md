@@ -179,44 +179,47 @@ Schema:       `BlogPosting` JSON-LD blocks in `<head>`, one per live post,
               same order as the cards
 
 ## CURRENT BLOG CARD COUNT
-Slot 1:  LIVE — Building Pad Options for Metal Buildings on Central Kansas Properties (July 12, 2026)
-Slot 2:  LIVE — Excavation & Trenching Cost, Need to Know in Central Kansas (July 7, 2026)
-Slot 3:  LIVE — Excavation in Rural Kansas Clay Problems (July 2, 2026)
-Slot 4:  LIVE — House Demolition Cost in Central Kansas What You Need to Know (July 2, 2026)
-Slot 5:  LIVE — How Much Does Septic System Installation Cost in Kansas? (June 7, 2026)
-Slot 6:  LIVE — Land Clearing in Central Kansas — What It Costs and What to Expect (June 7, 2026)
-Slot 7:  LIVE — Septic Installation Permits in Kansas — What You Need to Know (June 7, 2026)
-Slot 8:  LIVE — Excavation & Utility Trenching in Central Kansas (June 7, 2026)
-Slot 9:  LIVE — Demolition Contractor in Salina KS — What to Expect (June 7, 2026)
-Slot 10: LIVE — Storm Damage Cleanup & Emergency Site Work in Central Kansas (June 9, 2026)
-Slot 11: LIVE — Questions to Ask a Septic Contractor in Rural Kansas Before You Hire (June 24, 2026)
-Slot 12: LIVE — Septic Installation Cost Kansas: What Rural Homeowners Pay in Central KS (June 22, 2026)
-Slot 13: LIVE — How Often Should a Septic Tank Be Pumped & Maintained in Kansas? (June 18, 2026)
-Slot 14: LIVE — Acreage Building Site Prep in Saline County, Kansas (July 2, 2026)
-Slot 15: LIVE — Land Clearing Cost Per Acre in Saline County, KS (July 2, 2026)
+Slot 1:  LIVE — Can One Contractor Handle Land Clearing & Septic Install in Saline County KS (July 16, 2026)
+Slot 2:  LIVE — When Spring Storms Roll Through Kansas Cleanup Begins (July 13, 2026)
+Slot 3:  LIVE — Building Pad Options for Metal Buildings on Central Kansas Properties (July 12, 2026)
+Slot 4:  LIVE — Excavation & Trenching Cost, Need to Know in Central Kansas (July 7, 2026)
+Slot 5:  LIVE — Excavation in Rural Kansas Clay Problems (July 2, 2026)
+Slot 6:  LIVE — House Demolition Cost in Central Kansas What You Need to Know (July 2, 2026)
+Slot 7:  LIVE — How Much Does Septic System Installation Cost in Kansas? (June 7, 2026)
+Slot 8:  LIVE — Land Clearing in Central Kansas — What It Costs and What to Expect (June 7, 2026)
+Slot 9:  LIVE — Septic Installation Permits in Kansas — What You Need to Know (June 7, 2026)
+Slot 10: LIVE — Excavation & Utility Trenching in Central Kansas (June 7, 2026)
+Slot 11: LIVE — Demolition Contractor in Salina KS — What to Expect (June 7, 2026)
+Slot 12: LIVE — Storm Damage Cleanup & Emergency Site Work in Central Kansas (June 9, 2026)
+Slot 13: LIVE — Questions to Ask a Septic Contractor in Rural Kansas Before You Hire (June 24, 2026)
+Slot 14: LIVE — Septic Installation Cost Kansas: What Rural Homeowners Pay in Central KS (June 22, 2026)
+Slot 15: LIVE — How Often Should a Septic Tank Be Pumped & Maintained in Kansas? (June 18, 2026)
+Slot 16: LIVE — Acreage Building Site Prep in Saline County, Kansas (July 2, 2026)
+Slot 17: LIVE — Land Clearing Cost Per Acre in Saline County, KS (July 2, 2026)
 
 0 placeholders remaining. Next new post found becomes Slot 1; everything
 below shifts down.
 
 **Known gaps, not fixed by this run (out of scope — only new cards were
 added, existing ones are never touched per RULES above):**
-- Slots 5-15 (the 11 pre-existing cards) are **not** in newest-first
-  order among themselves — they predate this workflow and were never
-  sorted (confirmed: this site never had an equivalent of
-  kansasprairiewebworks.git's `dec278c` reorder pass). Slots 1-4 (added
-  2026-07-14) are correctly newest-first and correctly ahead of all
-  existing cards, per this file's RULES — but the full 15-card grid
-  is not strictly newest-first sitewide the way KPW's site is.
-- Schema count does not match card count: **4 `BlogPosting` schema
-  blocks for 15 cards.** This site had zero pre-existing per-post schema
-  before 2026-07-14 (unlike KPW's site, which had 5) — the 4 added this
-  run cover only the 4 new posts. Retroactively adding schema for the 11
-  pre-existing posts is a separate, larger task, not done here.
-- One live Blogger post was found and skipped, not added as a card:
-  `https://blog.mikeservicesllc.com/2026/07/emergency-septic-repair-salina-area-spring-storms-cleanup.html`
-  (published 2026-07-13) **has no title set on Blogger** — the API
-  returns an empty string. Real content and thumbnail exist, but a card
-  needs a title, and this file's RULES forbid inventing one. Needs a
-  human to set a title directly on Blogger, then re-run this workflow.
+- Slots 7-17 (the 11 original pre-existing cards) are **not** in
+  newest-first order among themselves — they predate this workflow and
+  were never sorted (confirmed: this site never had an equivalent of
+  kansasprairiewebworks.git's `dec278c` reorder pass). Slots 1-6 (added
+  across the 2026-07-14 and 2026-07-19 sync runs) are correctly
+  newest-first and correctly ahead of all existing cards, per this
+  file's RULES — but the full 17-card grid is not strictly newest-first
+  sitewide the way KPW's site is.
+- Schema count does not match card count: **6 `BlogPosting` schema
+  blocks for 17 cards.** This site had zero pre-existing per-post schema
+  before 2026-07-14 (unlike KPW's site, which had 5) — the 6 added
+  across both runs cover only the 6 new posts. Retroactively adding
+  schema for the 11 pre-existing posts is a separate, larger task, not
+  done here.
+- RESOLVED 2026-07-19: the previously-skipped post
+  (`emergency-septic-repair-salina-area-spring-storms-cleanup.html`,
+  published 2026-07-13) had no title set on Blogger as of 2026-07-14 —
+  a human has since set a real title ("When Spring Storms Roll Through
+  Kansas Cleanup Begins"), and it has been added as Slot 2 this run.
 
-Last updated: 2026-07-14
+Last updated: 2026-07-19
