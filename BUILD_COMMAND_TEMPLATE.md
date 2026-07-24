@@ -1,7 +1,19 @@
 # BUILD COMMAND TEMPLATE — Kansas Prairie Webworks
 ## Tier 4 Local Business Website
-## Version 5.5 — Auto-reads CLIENT_BRIEF_TEMPLATE.md
+## Version 5.7 — Auto-reads CLIENT_BRIEF_TEMPLATE.md
 ## Internal use only — kansasprairiewebworks.com
+
+---
+
+## SCOPE DISCIPLINE — PRODUCTION REPOS
+
+Never modify, resize, rename, recompress, or move files outside the explicit
+scope of the task. If optimization looks warranted, report it as a
+recommendation and stop. Do not act on it.
+
+Before any commit to a repo that is already live, run `git diff --stat` and
+report the full file list for approval. A commit that touches more files than
+the task requires is a defect, not a bonus.
 
 ---
 
@@ -266,26 +278,46 @@ STEP 4 — BUILD FILES IN THIS ORDER
            KPW navy default: r:28 g:61 b:90 (#1C3D5A)
 
      4i-1b: Generate favicon files from client logo using Node.js sharp.
-           Logo source: images/logo.png or images/logo.webp or images/logo.jpg
-           (use whichever exists)
+           Source: prefer images/logo-icon.webp (square icon-only). Fall
+           back to images/logo.webp and flag it in the build report.
 
-           Sharp has no native .ico writer — install png-to-ico alongside it:
+           sharp CANNOT write .ico. Never generate .ico. Never install
+           png-to-ico. Never emit a rel="icon" tag pointing at .ico.
 
-           mkdir /tmp/favicongen
-           cd /tmp/favicongen
-           npm install sharp png-to-ico
-
-           Generate to REPO ROOT (not images/ folder):
-             favicon.ico          (32x32, quality 90)
-             favicon-16x16.png    (16x16)
-             favicon-32x32.png    (32x32)
+           Generate to REPO ROOT (not images/ folder), PNG only:
+             favicon-48x48.png
+             favicon-96x96.png
+             favicon-192x192.png
              apple-touch-icon.png (180x180)
 
-           Add to every HTML file's <head>, after existing meta/link tags:
-             <link rel="icon" type="image/x-icon" href="/favicon.ico">
-             <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-             <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+           Composite the mark on a solid square of the client's primary
+           brand color, mark at ~80% of frame. Preserve alpha on the
+           source: fit 'contain', background {r:0,g:0,b:0,alpha:0}.
+
+           FALLBACK — MONOGRAM BADGE: if the logo is a scene (vehicle,
+           building, landscape), contains text or a phone number, or has
+           a baked-in background that survives cropping — do not force
+           it. Generate a monogram badge instead: solid brand-color
+           square, client initial in white bold sans-serif, cap height
+           ~65% of frame, no border or gradient. Report that you did
+           this.
+
+           Add to every HTML file's <head>, after existing meta/link
+           tags — index.html is mandatory (Google reads the favicon
+           from the homepage root only):
+             <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+             <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+             <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
              <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+           A blog subdomain is a separate hostname and needs its own
+           favicon set generated and linked independently.
+
+     4i-1c: PREVIEW GATE — before committing any favicon work, write
+           _preview-48.png and _preview-16.png to repo root, report the
+           paths, and STOP for human approval. The 16px preview is the
+           decision point — full-size appearance does not predict 16px
+           legibility. Delete both preview files after approval.
 
      4i-2: Build blog.html
            Sections: gradient hero (no image, no CTA buttons), blog grid
@@ -366,14 +398,28 @@ STEP 4 — BUILD FILES IN THIS ORDER
              ]
            Apply on every page that contains openingHoursSpecification — not index.html only.
 
-     4j-5: GOOGLE REVIEW LINK IN FOOTER
-           Add to .footer-right on ALL pages — after Facebook link, before Blog link:
+     4j-5: GOOGLE REVIEW LINK IN FOOTER — STORE VERBATIM, NEVER CONSTRUCT
+           The review URL is a real link a client pastes from their own GBP
+           dashboard. It is stored as a plain URL in Agency Brain's
+           googleReviewUrl field and used exactly as stored — never built
+           from a Place ID. The pattern https://g.page/r/<PLACE_ID>/review
+           is NOT a valid review-link format (that URL shape expects a CID,
+           not a Place ID) and produces a dead link even with a real Place
+           ID substituted in. Do not construct this URL from any other
+           field, ever, on any page.
+
+           CONDITIONAL RENDER — add to .footer-right on ALL pages, after
+           the Facebook link, before the Blog link, ONLY when
+           googleReviewUrl from Agency Brain is a non-empty real URL
+           (does not contain the literal string "PLACEHOLDER" and is not
+           blank):
              <a href="[googleReviewUrl]" target="_blank" rel="noopener">Leave a Google Review ★</a>
-           Pull googleReviewUrl from Agency Brain if the field is populated.
-           If not yet available — use this placeholder comment:
-             <!-- GOOGLE BUSINESS PROFILE LINK: add anchor tag here with Google review link when ready -->
-           When GBP Place ID is confirmed later, replace across all files with:
-             <a href="https://g.page/r/[PLACE_ID]/review" target="_blank" rel="noopener">Leave a Google Review &#9733;</a>
+           If googleReviewUrl is blank, missing, or contains "PLACEHOLDER"
+           — omit the anchor tag entirely. Do not render a dead link and do
+           not leave an HTML comment placeholder in its place; just skip it.
+           When a real googleReviewUrl lands in Agency Brain later, re-run
+           this step to add the button — it's a content update, not a
+           rebuild.
 
      4j-6: TESTIMONIALS SECTION ON HOMEPAGE
            Add to index.html between the featured section and the service areas section.
@@ -382,8 +428,11 @@ STEP 4 — BUILD FILES IN THIS ORDER
              — Orange &#9733;&#9733;&#9733;&#9733;&#9733; stars above each quote
              — Italic quote text
              — Reviewer name and source (e.g. "— Name, via Facebook")
-           Include a "Leave Us a Google Review" btn btn-outline CTA below the grid.
-           Use googleReviewUrl from Agency Brain or PLACEHOLDER_PLACE_ID if not yet available.
+           Include a "Leave Us a Google Review" btn btn-outline CTA below the grid —
+           same conditional-render rule as 4j-5: only render this CTA when
+           googleReviewUrl is a real, non-placeholder URL from Agency Brain.
+           If it isn't available yet, omit the CTA (keep the testimonials
+           grid itself either way — that part doesn't depend on the review link).
 
 ---
 
@@ -420,6 +469,18 @@ If no website images exist yet:
 Project photos (type="project") are used
 for content generation only — not placed
 on website pages directly.
+
+---
+
+STEP 5B — DOUBLE-EXTENSION GUARD (enforced — do not skip)
+
+List every file in images/ with Glob (not Windows Explorer — Explorer
+hides known extensions and will lie about the real filename).
+Fail this step on any double extension (e.g. featured-1.jpg.jpg,
+og-image.jpg.jpeg). Rename to the correct single extension via git mv
+(or a plain rename if not yet a git repo) and update every reference
+(see IMAGE FORMAT MIGRATION — REFERENCE SWEEP) before proceeding to
+STEP 6.
 
 ---
 
@@ -511,8 +572,11 @@ Note the result in PROGRESS.md.
 - [ ] Set up Google Analytics GA4 property for client — add tracking ID to all pages
 - [ ] Create Google Business Profile if client does not have one — service area business
       type verifies faster than storefront; do not select storefront if no public walk-in address
-- [ ] Get GBP Place ID → find in GBP dashboard URL or via Places API
-      → replace PLACEHOLDER_PLACE_ID in review links across all HTML files
+- [ ] Once GBP is verified, get the real review link from the client's GBP
+      dashboard (Home → "Get more reviews" → Copy link) and store it verbatim
+      in Agency Brain's googleReviewUrl field — do not construct it from a
+      Place ID (see STEP 4j-5). Re-run 4j-5/4j-6 to add the review button
+      across all pages once a real link is stored.
 - [ ] Verify canonical tags on every page — correct domain, correct filename, no duplicates
 - [ ] Confirm favicon.ico appears in repo root
 - [ ] Test favicon shows in browser tab
@@ -521,6 +585,11 @@ Note the result in PROGRESS.md.
 - [ ] Curl the LIVE robots.txt (not the repo file) and check for a Cloudflare
       "Managed content" block Disallowing ClaudeBot/GPTBot/Google-Extended —
       if present, fix it in Cloudflare AI Crawl Control, not just the repo
+- [ ] Run `node kpw_credentials/cloudflare_bot_check.js <client-domain>` — confirms
+      the auto-generated WAF "AI Crawl Control" rule isn't silently blocking
+      Googlebot or other legitimate crawlers (see CLOUDFLARE BOT CHECK section
+      above). This is a separate mechanism from the robots.txt check above —
+      check both.
 - [ ] Validate all schema at validator.schema.org
 - [ ] Confirm llms.txt exists in repo root and lists every page in sitemap.xml
 - [ ] Test all internal links return 200 (check href/src against repo files,
@@ -528,6 +597,15 @@ Note the result in PROGRESS.md.
 - [ ] Check anchor text is descriptive — no standalone "click here" / "here" /
       "this page" / "link" (blog card "Read More →" buttons are fine, they
       have context from the card title)
+- [ ] `git diff --stat` reviewed before push — no files outside task scope
+- [ ] All images return 200 after deploy (spot-check every service card image)
+- [ ] Every image reference in .html/.css/.js/.json/.xml resolves to a real file
+- [ ] No double extensions in images/
+- [ ] All images 200 via headless Chrome with JS enabled, every page
+- [ ] JS-rendered sections listed in PROGRESS.md
+- [ ] grep PLACEHOLDER / TODO / example.com — zero hits
+- [ ] Business name identical across site copy, schema markup, and GBP
+- [ ] 16px favicon preview approved
 
 ---
 
@@ -551,6 +629,39 @@ All records: orange cloud (Proxied ON)
 
 ---
 
+## CLOUDFLARE BOT CHECK (required — after DNS setup, before build is considered done)
+
+Cloudflare auto-creates an "AI Crawl Control - Block AI bots by User Agent"
+WAF custom rule on new zones. Its default list blocks by literal user-agent
+substring and includes legitimate crawlers — Googlebot, bingbot, GPTBot,
+ClaudeBot, OAI-SearchBot, PerplexityBot — alongside actual scrapers. This
+happens silently at the edge regardless of what robots.txt says in the repo,
+and Bot Management / AI Crawl Control's own toggle settings can show
+everything "disabled" while this rule still blocks traffic underneath it.
+
+Confirmed root cause of a real incident: Googlebot got 403'd on a live client
+page for days before GSC Coverage surfaced it as "Blocked due to access
+forbidden (403)."
+
+Once DNS is added for a new client zone, run:
+
+  node kpw_credentials/cloudflare_bot_check.js <client-domain>
+
+Requires CLOUDFLARE_API_TOKEN (User-scope env var — never hardcode it) with
+Zone Read + Bot Management Read + Zone WAF Edit permissions on the zone.
+If it reports any legitimate crawler blocked, re-run with --fix:
+
+  node kpw_credentials/cloudflare_bot_check.js <client-domain> --fix
+
+Then verify live with curl (normal UA should already work; this confirms
+Googlebot does too):
+
+  curl -A "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" -o /dev/null -w "%{http_code}\n" https://<client-domain>/
+
+A new client build is not done until this returns 200.
+
+---
+
 ## CLIENT FOLDER STRUCTURE
 (What the folder should look like before running the build command)
 
@@ -561,19 +672,20 @@ All records: orange cloud (Proxied ON)
   ├── BLOG_AGENT.md              ← created by Claude during build (Step 4i-7)
   └── images/
       ├── logo.png or logo.jpg   ← client logo (any format)
-      ├── hero-home.jpg          ← homepage hero photo
-      ├── featured-1.jpg         ← featured section photo
-      ├── hero-service-1.jpg     ← service 1 card + hero (numbered in order of services in brief)
-      ├── hero-service-2.jpg     ← service 2 card + hero photo
-      ├── hero-service-3.jpg     ← service 3 card + hero photo
-      ├── hero-service-4.jpg     ← service 4 card + hero photo (if 4 services)
-      ├── hero-service-5.jpg     ← service 5 card + hero photo (if 5 services)
-      ├── og-image.jpg           ← social share image
+      │     Client may supply any format; build converts to logo.webp.
+      ├── hero-home.webp         ← homepage hero photo
+      ├── featured-1.webp        ← featured section photo
+      ├── hero-service-1.webp    ← service 1 card + hero (numbered in order of services in brief)
+      ├── hero-service-2.webp    ← service 2 card + hero photo
+      ├── hero-service-3.webp    ← service 3 card + hero photo
+      ├── hero-service-4.webp    ← service 4 card + hero photo (if 4 services)
+      ├── hero-service-5.webp    ← service 5 card + hero photo (if 5 services)
+      ├── og-image.webp          ← social share image [OPEN GAP — no portal slot, no STEP 5 mapping, no generation step. Not currently produced by the build.]
       └── blog-placeholder.webp  ← GENERATED by Claude during build (Step 4i-1) — do NOT ask client to provide
 
 IMAGE NAMING RULES:
-- Required images: logo.png/jpg, hero-home.jpg, featured-1.jpg, og-image.jpg
-- Service images: hero-service-1.jpg through hero-service-N.jpg (one per service, numbered in brief order)
+- Required images: logo.png/jpg (client may supply any format; build converts to logo.webp), hero-home.webp, featured-1.webp, og-image.webp
+- Service images: hero-service-1.webp through hero-service-N.webp (one per service, numbered in brief order)
 - blog-placeholder.webp is auto-generated via Node.js/sharp — never listed as client-provided
 
 WINDOWS EXTENSION WARNING: After dropping images into the folder, verify actual
@@ -626,6 +738,68 @@ Log every judgment call in PROGRESS.md so Kaleb can review and override.
 
 ---
 
-*Kansas Prairie Webworks — BUILD_COMMAND_TEMPLATE.md v5.5*
+## IMAGE FORMAT MIGRATION — REFERENCE SWEEP
+
+Whenever an image file is renamed, converted, or its extension changes
+(e.g. .jpg → .webp), grep the ENTIRE repo for the old filename before
+considering the change done — not just the HTML page it's visually on.
+
+Check every attribute and file type, not just src=:
+  .html, .css, .js, .json, .xml
+  data-src, data-srcset, srcset, <source>, <picture>
+  CSS background-image
+  <link rel="preload"> and <link rel="icon">
+  JSON-LD image fields, og:image, twitter:image
+  sitemap.xml entries
+  any JS array or config object
+
+JavaScript is the one that gets missed — a static HTML page can be
+fully updated while a JS-rendered section (e.g. a services array read
+by a render function) still points at the old file. Confirmed root
+cause of a real incident: a hero-image conversion updated every
+HTML/CSS reference and shipped clean, but a client-side-rendered
+homepage service grid kept reading stale filenames from main.js and
+broke silently — invisible to curl, since curl never executes the JS
+that renders it.
+
+Before any commit: confirm zero dead references remain. Extract every
+images/... path referenced in any live code file and confirm each one
+exists on disk. Report any reference with no matching file.
+
+---
+
+## CLIENT-SIDE RENDER AUDIT
+
+List every section of the site that is rendered by JavaScript rather
+than present as static HTML (e.g. a homepage service grid built from a
+JS data array via innerHTML) in PROGRESS.md, naming the container id,
+the JS function that populates it, and the data source (e.g. main.js's
+services[] array). Static-HTML verification (grep, curl) cannot see
+JS-rendered content — anyone auditing this site later needs to know it
+exists before they can check it correctly.
+
+---
+
+## VERIFICATION STANDARD
+
+curl and any plain HTTP fetch (including this tool's own web-fetch
+equivalent) do not execute JavaScript. They can confirm a URL returns
+200 and confirm what's in the raw HTML/CSS/JS source — they cannot
+confirm what a real visitor's browser actually renders or requests.
+
+Never use curl-only checks to verify:
+- that a page's images actually load
+- that a JS-rendered section works
+- that a fix for a JS-driven bug is actually fixed
+
+Use headless Chrome (Playwright) with JavaScript enabled, load the live
+URL, and capture actual network requests/console output. This
+project's existing `.claude/skills/run-[client-slug]/driver.mjs`
+Playwright setup can be extended with a small network-capture script
+for this — see STEP 8B for the existing screenshot-based pattern.
+
+---
+
+*Kansas Prairie Webworks — BUILD_COMMAND_TEMPLATE.md v5.6*
 *kansasprairiewebworks.com — Internal use only*
 *Agency Brain powered — single source of truth*
