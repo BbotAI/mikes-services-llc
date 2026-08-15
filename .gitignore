@@ -10,3 +10,6 @@ DROP-IMAGES-HERE.txt
 kpw_agent.py
 TEST_CLIENT_SIMULATOR.js
 *.md.txt
+
+# Pre-optimization image backups — local only, never deploy to Pages
+images/_originals/

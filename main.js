@@ -115,7 +115,7 @@ function renderServices() {
   grid.innerHTML = activeServices.map(s => `
     <article class="service-card">
       <div class="service-media">
-        <img src="${s.image}" alt="${s.alt}" loading="lazy" width="640" height="420">
+        <img src="${s.image}" alt="${s.alt}" loading="lazy" decoding="async" width="800" height="450">
       </div>
       <h3>${s.name}</h3>
       <p>${s.desc}</p>

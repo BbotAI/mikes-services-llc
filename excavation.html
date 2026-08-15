@@ -1,16 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S808CCL2SE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-S808CCL2SE');
-  </script>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Excavation & Trenching in Salina, Kansas — Mike's Services LLC</title>
@@ -19,8 +9,31 @@
   <link rel="canonical" href="https://mikeservicesllc.com/excavation.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Fonts load without blocking first paint. The stylesheet is fetched as a
+       preload, then promoted to a real stylesheet once it arrives. The URL
+       already carries display=swap, so text paints immediately in the fallback
+       face and re-renders in Poppins/Inter when they land. The <noscript> copy
+       keeps fonts working with JS disabled. -->
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap">
+  </noscript>
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Google tag (gtag.js) — kept below the critical head so analytics never
+       competes with first paint. It is async, so page rendering never waits
+       on it. Must stay after <meta charset>: the charset declaration has to
+       appear within the first 1024 bytes of the document. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S808CCL2SE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-S808CCL2SE');
+  </script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
