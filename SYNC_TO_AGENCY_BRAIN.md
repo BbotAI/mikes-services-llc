@@ -1,3 +1,7 @@
+> **STALE — superseded by `PROJECT_STATUS.md`.** Kept for history only.
+> This file describes the site as it was in mid-2026 and will mislead you
+> about the current state. Read `PROJECT_STATUS.md` first.
+
 # SYNC_TO_AGENCY_BRAIN.md
 # KPW Tier 4 Auto-Populate — Agency Brain
 # Drop into any client kpw-build folder

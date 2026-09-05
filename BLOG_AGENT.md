@@ -1,5 +1,6 @@
 # BLOG_AGENT.md — Generic Blog-Card Sync Agent
 # Permanent file — never delete from project folder.
+# See PROJECT_STATUS.md for current site state, SEO baseline and open items.
 # Works identically for any client site. The ONLY client-specific line in
 # this entire document is "THIS SITE'S BLOG" below — copy this file into
 # another client's repo, change that one line, and the same command works

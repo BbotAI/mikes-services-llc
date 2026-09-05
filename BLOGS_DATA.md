@@ -1,3 +1,7 @@
+> **STALE — superseded by `PROJECT_STATUS.md`.** Kept for history only.
+> This file describes the site as it was in mid-2026 and will mislead you
+> about the current state. Read `PROJECT_STATUS.md` first.
+
 # BLOGS_DATA.md — Mike's Services LLC
 # Add new blog posts here. One block per post.
 # To publish a new card: add a BLOG block below, then run:

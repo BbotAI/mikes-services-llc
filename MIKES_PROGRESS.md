@@ -1,3 +1,7 @@
+> **STALE — superseded by `PROJECT_STATUS.md`.** Kept for history only.
+> This file describes the site as it was in mid-2026 and will mislead you
+> about the current state. Read `PROJECT_STATUS.md` first.
+
 # MIKES_PROGRESS.md
 # Mike's Services LLC — Fix Pass v3
 # mikeservicesllc.com
