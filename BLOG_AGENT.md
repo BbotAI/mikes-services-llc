@@ -171,6 +171,57 @@ not one commit per post — unless explicitly told otherwise.
   this file's workflow logic.** The only site-specific value in this
   entire document is the "THIS SITE'S BLOG" URL at the top.
 
+## PUBLISHING A NEW POST TO BLOGGER (drafts written here, not by the API)
+
+Claude Code has **no Blogger write scope**. The clasp token in
+`~/.clasprc.json` grants Apps Script, Drive and Cloud only, and `BLOG_AGENT.md`
+requires the Apps Script route stay read-only. So new posts are written as
+finished HTML into `blog-drafts/` (gitignored, never deployed) and pasted into
+Blogger by hand.
+
+Do these four things **while the post is still a draft** — the first one cannot
+be undone cleanly after publishing:
+
+### 1. Custom permalink — set it BEFORE you publish
+Blogger locks the permalink at publish. Left to itself it truncates the title
+mid-phrase and you are stuck with it. Real examples already live on this blog:
+
+    BAD  (auto)   /2026/08/adding-bathroom-to-shop-on-septic-in.html
+    BAD  (auto)   /2026/08/barn-pad-grading-drainage-planning-for.html
+    GOOD (custom) /2026/07/one-contractor-land-clearing-septic-install-saline-county-ks.html
+
+Post Settings -> Permalink -> Custom Permalink. Lead with the target keyword.
+
+### 2. Labels
+Reuse the existing vocabulary rather than inventing new ones. Current top
+labels: `Central Kansas` (17), `Excavation` (10), `Saline County KS` (9),
+`Septic Installation` (8), `Salina KS` (7).
+
+**Known problem:** `Mike's Services LLC` (5 posts) and `Mikes Services LLC`
+(5 posts) both exist — same label, split by an apostrophe, so each archive page
+shows half the posts. Standardise on `Mike's Services LLC` when you next touch
+these.
+
+### 3. Insert the photo through Blogger's uploader, never as an external URL
+Pasting an externally-hosted image URL makes Blogger emit a
+`lh3.googleusercontent.com/blogger_img_proxy/...` link. Those are signed and
+short-lived: they 403 when the website hotlinks them, and the card silently
+falls back to `blog-placeholder.webp` — the blue tile. Uploading through
+Blogger produces a permanent `blogger.googleusercontent.com` URL.
+Three cards broke this way and were repaired on 2026-09-05.
+
+### 4. Fill in alt text on the photo
+Blogger's image dialog sets alt. Describe the actual photo; do not paste the
+site URL or phone number. The footer logo's alt is generated upstream by
+`kpw-agency-brain/Content.gs` and was fixed on 2026-09-05.
+
+### Then, and only then
+Publish, confirm the post appears in
+`https://blog.mikeservicesllc.com/feeds/posts/default?alt=json`, and run this
+workflow to sync the card. Add a `<p class="blog-callout">` link on the
+matching service page too — see the block at the bottom of `septic.html`.
+
+
 ## SITE STRUCTURE
 Blog page:    blog.html
 Blog section: `#blog-list` > `.service-grid.blog-grid`
@@ -179,47 +230,59 @@ Schema:       `BlogPosting` JSON-LD blocks in `<head>`, one per live post,
               same order as the cards
 
 ## CURRENT BLOG CARD COUNT
-Slot 1:  LIVE — Can One Contractor Handle Land Clearing & Septic Install in Saline County KS (July 16, 2026)
-Slot 2:  LIVE — When Spring Storms Roll Through Kansas Cleanup Begins (July 13, 2026)
-Slot 3:  LIVE — Building Pad Options for Metal Buildings on Central Kansas Properties (July 12, 2026)
-Slot 4:  LIVE — Excavation & Trenching Cost, Need to Know in Central Kansas (July 7, 2026)
-Slot 5:  LIVE — Excavation in Rural Kansas Clay Problems (July 2, 2026)
-Slot 6:  LIVE — House Demolition Cost in Central Kansas What You Need to Know (July 2, 2026)
-Slot 7:  LIVE — How Much Does Septic System Installation Cost in Kansas? (June 7, 2026)
-Slot 8:  LIVE — Land Clearing in Central Kansas — What It Costs and What to Expect (June 7, 2026)
-Slot 9:  LIVE — Septic Installation Permits in Kansas — What You Need to Know (June 7, 2026)
-Slot 10: LIVE — Excavation & Utility Trenching in Central Kansas (June 7, 2026)
-Slot 11: LIVE — Demolition Contractor in Salina KS — What to Expect (June 7, 2026)
-Slot 12: LIVE — Storm Damage Cleanup & Emergency Site Work in Central Kansas (June 9, 2026)
-Slot 13: LIVE — Questions to Ask a Septic Contractor in Rural Kansas Before You Hire (June 24, 2026)
-Slot 14: LIVE — Septic Installation Cost Kansas: What Rural Homeowners Pay in Central KS (June 22, 2026)
-Slot 15: LIVE — How Often Should a Septic Tank Be Pumped & Maintained in Kansas? (June 18, 2026)
-Slot 16: LIVE — Acreage Building Site Prep in Saline County, Kansas (July 2, 2026)
-Slot 17: LIVE — Land Clearing Cost Per Acre in Saline County, KS (July 2, 2026)
+Slot 1:   LIVE — Adding a Bathroom to a Shop on Septic in Saline County KS (August 31, 2026)
+Slot 2:   LIVE — Barn Pad Grading & Drainage Planning for a 40x60 Shop in Kansas (August 18, 2026)
+Slot 3:   LIVE — How Often to Pump Your Septic Tank in Rural Kansas (August 16, 2026)
+Slot 4:   LIVE — Septic Installation Cost in Kansas Clay: Saline County Guide (August 10, 2026)
+Slot 5:   LIVE — Septic Systems on Rocky Limestone Ground in Lincoln County KS (July 30, 2026)
+Slot 6:   LIVE — Can One Contractor Handle Land Clearing & Septic Install in Saline County KS (July 16, 2026)
+Slot 7:   LIVE — When Spring Storms Roll Through Kansas Cleanup Begins (July 13, 2026)
+Slot 8:   LIVE — Building Pad Options for Metal Buildings on Central Kansas Properties (July 12, 2026)
+Slot 9:   LIVE — Excavation & Trenching Cost, Need to Know in Central Kansas (July 7, 2026)
+Slot 10:  LIVE — Excavation in Rural Kansas Clay Problems (July 2, 2026)
+Slot 11:  LIVE — House Demolition Cost in Central Kansas What You Need to Know (July 2, 2026)
+Slot 12:  LIVE — How Much Does Septic System Installation Cost in Kansas? (June 7, 2026)
+Slot 13:  LIVE — Land Clearing in Central Kansas — What It Costs and What to Expect (June 7, 2026)
+Slot 14:  LIVE — Septic Installation Permits in Kansas — What You Need to Know (June 7, 2026)
+Slot 15:  LIVE — Excavation & Utility Trenching in Central Kansas (June 7, 2026)
+Slot 16:  LIVE — Demolition Contractor in Salina KS — What to Expect (June 7, 2026)
+Slot 17:  LIVE — Storm Damage Cleanup & Emergency Site Work in Central Kansas (June 9, 2026)
+Slot 18:  LIVE — Questions to Ask a Septic Contractor in Rural Kansas Before You Hire (June 24, 2026)
+Slot 19:  LIVE — Septic Installation Cost Kansas: What Rural Homeowners Pay in Central KS (June 22, 2026)
+Slot 20:  LIVE — How Often Should a Septic Tank Be Pumped & Maintained in Kansas? (June 18, 2026)
+Slot 21:  LIVE — Acreage Building Site Prep in Saline County, Kansas (July 2, 2026)
+Slot 22:  LIVE — Land Clearing Cost Per Acre in Saline County, KS (July 2, 2026)
 
 0 placeholders remaining. Next new post found becomes Slot 1; everything
 below shifts down.
 
 **Known gaps, not fixed by this run (out of scope — only new cards were
 added, existing ones are never touched per RULES above):**
-- Slots 7-17 (the 11 original pre-existing cards) are **not** in
+- Slots 12-22 (the 11 original pre-existing cards) are **not** in
   newest-first order among themselves — they predate this workflow and
-  were never sorted (confirmed: this site never had an equivalent of
-  kansasprairiewebworks.git's `dec278c` reorder pass). Slots 1-6 (added
-  across the 2026-07-14 and 2026-07-19 sync runs) are correctly
-  newest-first and correctly ahead of all existing cards, per this
-  file's RULES — but the full 17-card grid is not strictly newest-first
-  sitewide the way KPW's site is.
-- Schema count does not match card count: **6 `BlogPosting` schema
-  blocks for 17 cards.** This site had zero pre-existing per-post schema
-  before 2026-07-14 (unlike KPW's site, which had 5) — the 6 added
-  across both runs cover only the 6 new posts. Retroactively adding
-  schema for the 11 pre-existing posts is a separate, larger task, not
-  done here.
-- RESOLVED 2026-07-19: the previously-skipped post
-  (`emergency-septic-repair-salina-area-spring-storms-cleanup.html`,
-  published 2026-07-13) had no title set on Blogger as of 2026-07-14 —
-  a human has since set a real title ("When Spring Storms Roll Through
-  Kansas Cleanup Begins"), and it has been added as Slot 2 this run.
+  were never sorted. Slots 1-11 (added across the 2026-07-14, 2026-07-19
+  and 2026-09-05 sync runs) are correctly newest-first and correctly ahead
+  of all existing cards, per this file's RULES — but the full 22-card grid
+  is not strictly newest-first sitewide.
+- Schema count does not match card count: **11 `BlogPosting` schema blocks
+  for 22 cards.** The 11 cover only the posts added by this workflow;
+  retroactively adding schema for the 11 pre-existing posts is a separate
+  task, not done here.
 
-Last updated: 2026-07-19
+**2026-09-05 run notes:**
+- Added 5 new cards (Slots 1-5).
+- **Fixed 3 broken thumbnails** on existing Slots (now 18, 21, 22). They
+  pointed at `lh3.googleusercontent.com/blogger_img_proxy/...` URLs, which
+  Blogger only emits for images hosted OUTSIDE Blogger. Those links are
+  signed and short-lived, so they returned 403 and the cards fell back to
+  `blog-placeholder.webp` — the blue tile. Each was repointed at the real
+  Cloudinary original embedded in the post. **Never store a
+  `blogger_img_proxy` URL in a card; always resolve it to the true source.**
+- Card `alt` text for the 5 new cards was written here rather than copied
+  from Blogger. Audit of the source posts found one image with no `alt` at
+  all, one with no `title`, and two whose `alt` described a tank
+  installation on posts about pumping and about rocky ground. Those are
+  defects in the Blogger posts themselves and still want fixing at source.
+- All 22 thumbnails verified HTTP 200 after the run.
+
+Last updated: 2026-09-05

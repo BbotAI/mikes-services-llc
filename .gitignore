@@ -13,3 +13,6 @@ TEST_CLIENT_SIMULATOR.js
 
 # Pre-optimization image backups — local only, never deploy to Pages
 images/_originals/
+
+# Blog post drafts for manual paste into Blogger - never deploy to the live site
+blog-drafts/
