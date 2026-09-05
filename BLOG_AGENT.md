@@ -230,59 +230,74 @@ Schema:       `BlogPosting` JSON-LD blocks in `<head>`, one per live post,
               same order as the cards
 
 ## CURRENT BLOG CARD COUNT
-Slot 1:   LIVE — Adding a Bathroom to a Shop on Septic in Saline County KS (August 31, 2026)
-Slot 2:   LIVE — Barn Pad Grading & Drainage Planning for a 40x60 Shop in Kansas (August 18, 2026)
-Slot 3:   LIVE — How Often to Pump Your Septic Tank in Rural Kansas (August 16, 2026)
-Slot 4:   LIVE — Septic Installation Cost in Kansas Clay: Saline County Guide (August 10, 2026)
-Slot 5:   LIVE — Septic Systems on Rocky Limestone Ground in Lincoln County KS (July 30, 2026)
-Slot 6:   LIVE — Can One Contractor Handle Land Clearing & Septic Install in Saline County KS (July 16, 2026)
-Slot 7:   LIVE — When Spring Storms Roll Through Kansas Cleanup Begins (July 13, 2026)
-Slot 8:   LIVE — Building Pad Options for Metal Buildings on Central Kansas Properties (July 12, 2026)
-Slot 9:   LIVE — Excavation & Trenching Cost, Need to Know in Central Kansas (July 7, 2026)
-Slot 10:  LIVE — Excavation in Rural Kansas Clay Problems (July 2, 2026)
-Slot 11:  LIVE — House Demolition Cost in Central Kansas What You Need to Know (July 2, 2026)
-Slot 12:  LIVE — How Much Does Septic System Installation Cost in Kansas? (June 7, 2026)
-Slot 13:  LIVE — Land Clearing in Central Kansas — What It Costs and What to Expect (June 7, 2026)
-Slot 14:  LIVE — Septic Installation Permits in Kansas — What You Need to Know (June 7, 2026)
-Slot 15:  LIVE — Excavation & Utility Trenching in Central Kansas (June 7, 2026)
-Slot 16:  LIVE — Demolition Contractor in Salina KS — What to Expect (June 7, 2026)
-Slot 17:  LIVE — Storm Damage Cleanup & Emergency Site Work in Central Kansas (June 9, 2026)
-Slot 18:  LIVE — Questions to Ask a Septic Contractor in Rural Kansas Before You Hire (June 24, 2026)
-Slot 19:  LIVE — Septic Installation Cost Kansas: What Rural Homeowners Pay in Central KS (June 22, 2026)
-Slot 20:  LIVE — How Often Should a Septic Tank Be Pumped & Maintained in Kansas? (June 18, 2026)
-Slot 21:  LIVE — Acreage Building Site Prep in Saline County, Kansas (July 2, 2026)
-Slot 22:  LIVE — Land Clearing Cost Per Acre in Saline County, KS (July 2, 2026)
+Slot 1:   LIVE — Septic Services in Saline County KS: Install, Repair, Pumping & Inspection (September 5, 2026)
+Slot 2:   LIVE — Septic Perc Test & Soil Testing in Saline County KS (September 5, 2026)
+Slot 3:   LIVE — Adding a Bathroom to a Shop on Septic in Saline County KS (August 31, 2026)
+Slot 4:   LIVE — Barn Pad Grading & Drainage Planning for a 40x60 Shop in Kansas (August 18, 2026)
+Slot 5:   LIVE — How Often to Pump Your Septic Tank in Rural Kansas (August 16, 2026)
+Slot 6:   LIVE — Septic Installation Cost in Kansas Clay: Saline County Guide (August 10, 2026)
+Slot 7:   LIVE — Septic Systems on Rocky Limestone Ground in Lincoln County KS (July 30, 2026)
+Slot 8:   LIVE — Can One Contractor Handle Land Clearing & Septic Install in Saline County KS (July 16, 2026)
+Slot 9:   LIVE — When Spring Storms Roll Through Kansas Cleanup Begins (July 13, 2026)
+Slot 10:  LIVE — Building Pad Options for Metal Buildings on Central Kansas Properties (July 12, 2026)
+Slot 11:  LIVE — Excavation & Trenching Cost, Need to Know in Central Kansas (July 7, 2026)
+Slot 12:  LIVE — Excavation in Rural Kansas Clay Problems (July 2, 2026)
+Slot 13:  LIVE — House Demolition Cost in Central Kansas What You Need to Know (July 2, 2026)
+Slot 14:  LIVE — How Much Does Septic System Installation Cost in Kansas? (June 7, 2026)
+Slot 15:  LIVE — Land Clearing in Central Kansas — What It Costs and What to Expect (June 7, 2026)
+Slot 16:  LIVE — Septic Installation Permits in Kansas — What You Need to Know (June 7, 2026)
+Slot 17:  LIVE — Excavation & Utility Trenching in Central Kansas (June 7, 2026)
+Slot 18:  LIVE — Demolition Contractor in Salina KS — What to Expect (June 7, 2026)
+Slot 19:  LIVE — Storm Damage Cleanup & Emergency Site Work in Central Kansas (June 9, 2026)
+Slot 20:  LIVE — Questions to Ask a Septic Contractor in Rural Kansas Before You Hire (June 24, 2026)
+Slot 21:  LIVE — Septic Installation Cost Kansas: What Rural Homeowners Pay in Central KS (June 22, 2026)
+Slot 22:  LIVE — How Often Should a Septic Tank Be Pumped & Maintained in Kansas? (June 18, 2026)
+Slot 23:  LIVE — Acreage Building Site Prep in Saline County, Kansas (July 2, 2026)
+Slot 24:  LIVE — Land Clearing Cost Per Acre in Saline County, KS (July 2, 2026)
 
 0 placeholders remaining. Next new post found becomes Slot 1; everything
 below shifts down.
 
 **Known gaps, not fixed by this run (out of scope — only new cards were
 added, existing ones are never touched per RULES above):**
-- Slots 12-22 (the 11 original pre-existing cards) are **not** in
+- Slots 14-24 (the 11 original pre-existing cards) are **not** in
   newest-first order among themselves — they predate this workflow and
-  were never sorted. Slots 1-11 (added across the 2026-07-14, 2026-07-19
+  were never sorted. Slots 1-13 (added across the 2026-07-14, 2026-07-19
   and 2026-09-05 sync runs) are correctly newest-first and correctly ahead
-  of all existing cards, per this file's RULES — but the full 22-card grid
+  of all existing cards, per this file's RULES — but the full 24-card grid
   is not strictly newest-first sitewide.
-- Schema count does not match card count: **11 `BlogPosting` schema blocks
-  for 22 cards.** The 11 cover only the posts added by this workflow;
+- Schema count does not match card count: **13 `BlogPosting` schema blocks
+  for 24 cards.** The 13 cover only the posts added by this workflow;
   retroactively adding schema for the 11 pre-existing posts is a separate
   task, not done here.
 
 **2026-09-05 run notes:**
-- Added 5 new cards (Slots 1-5).
-- **Fixed 3 broken thumbnails** on existing Slots (now 18, 21, 22). They
-  pointed at `lh3.googleusercontent.com/blogger_img_proxy/...` URLs, which
-  Blogger only emits for images hosted OUTSIDE Blogger. Those links are
-  signed and short-lived, so they returned 403 and the cards fell back to
-  `blog-placeholder.webp` — the blue tile. Each was repointed at the real
-  Cloudinary original embedded in the post. **Never store a
+- Added 5 synced cards, then 2 more once the two new septic posts were
+  published — Slots 1-7 this run, 24 cards total.
+- Slots 1 and 2 are the first posts written by KPW rather than synced from
+  the client: drafted into `blog-drafts/`, pasted into Blogger by hand, then
+  synced back. Both target real Search Console demand —
+  `saline county septic services` (Mike's strongest septic term, was
+  position 11 on the blog with no dedicated page) and the perc-test cluster
+  (`septic perc test near me` was already position 6 on zero content).
+- **Fixed 3 broken thumbnails** on existing cards (now Slots 20, 23, 24).
+  They pointed at `lh3.googleusercontent.com/blogger_img_proxy/...` URLs,
+  which Blogger only emits for images hosted OUTSIDE Blogger. Those links
+  are signed and short-lived, so they returned 403 and the cards fell back
+  to `blog-placeholder.webp` — the blue tile. Each was repointed at the
+  real Cloudinary original embedded in the post. **Never store a
   `blogger_img_proxy` URL in a card; always resolve it to the true source.**
-- Card `alt` text for the 5 new cards was written here rather than copied
-  from Blogger. Audit of the source posts found one image with no `alt` at
-  all, one with no `title`, and two whose `alt` described a tank
-  installation on posts about pumping and about rocky ground. Those are
-  defects in the Blogger posts themselves and still want fixing at source.
-- All 22 thumbnails verified HTTP 200 after the run.
+- Card `alt` text was written here rather than copied from Blogger. An
+  audit of the source posts found one image with no `alt` at all, one with
+  no `title`, and two whose `alt` described a tank installation on posts
+  about pumping and about rocky ground. The root cause was in
+  `kpw-agency-brain/Content.gs` and was fixed and deployed on 2026-09-05
+  (Apps Script v189 / version 208) — the footer logo's alt had been the
+  site URL plus phone number on every post for every client, no image ever
+  got a `title`, and the hero alt was never HTML-escaped.
+- Service pages updated: `septic.html` 5 → 11 blog callouts,
+  `building-pad.html` 2 → 3.
+- All 24 thumbnails and every blog link on every service page verified
+  HTTP 200 after the run.
 
 Last updated: 2026-09-05
