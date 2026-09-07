@@ -215,34 +215,52 @@ do not "fix" pages that do not exist.
 
 ## 6a. Open items as of 2026-09-06
 
-### Mobile PageSpeed is 74 and that is a real regression
+### Mobile PageSpeed: there is no regression. Do not "fix" it.
 
-Measured twice, same result, so it is not lab noise:
+**This section previously claimed a regression from 88 to 74. That was wrong,
+and it was wrong because it was written off two readings.** Corrected the same
+day after measuring properly.
 
-| | Score | LCP | FCP | CLS | TBT |
-|---|---|---|---|---|---|
-| Mobile | **74** | 4.4–4.5 s | 3.4 s | 0 | 70 ms |
-| Desktop | 93 | 1.0 s | 0.7 s | 0.001 | 190 ms |
+Every mobile reading taken on 2026-09-06, in order:
 
-The August client report showed **88** on mobile. It is now 74.
+    74, 74, 76, 93, 93, 80, 80, 93, 93
 
-**It is not the images.** The hero is 34 KB and CLS is a perfect 0 — the
-image-weight work in `282ea63` held. There is no Font Awesome on this site.
+The score does not sit at 74. It ranges **74–93 across runs of the same
+unchanged page**, and the whole swing is LCP landing at either 2.6 s or 4.4 s.
+Lighthouse mobile simulates a throttled connection and a low-end CPU on a
+shared test fleet; that simulation is noisy, and this page sits right on a
+threshold where the noise crosses a scoring band.
 
-**FCP of 3.4 s is the problem**, and on a flat static page that means
-render-blocking resources rather than payload. The head loads a Google Fonts
-stylesheet from `fonts.googleapis.com`, which costs a DNS lookup, a TLS
-handshake and a CSS round trip before anything paints, then fetches the font
-files from a second origin. LCP at 4.4 s is the hero waiting behind that.
+**What real users actually get, measured directly:**
 
-Worth trying, cheapest first:
-1. `<link rel="preconnect">` to `fonts.googleapis.com` and
-   `fonts.gstatic.com` (crossorigin) — one line, removes the handshake wait.
-2. Self-host the two font families and drop the external stylesheet entirely.
-3. Inline the critical CSS for the hero.
+| | |
+|---|---|
+| TTFB, 6 requests | 0.10–0.20 s |
+| Hero image (34 KB) | 0.16–0.34 s |
+| Desktop score | 92–93 |
+| CLS | 0–0.001 |
 
-**Do not skip re-measuring after each step.** Mobile Lighthouse moves ±10 run
-to run; take two readings before believing any change worked.
+The site is fast. There is nothing wrong with it.
+
+**The head is already fully optimised** — checked line by line before assuming
+otherwise: `preconnect` to both font origins with `crossorigin`, hero
+`preload` with `fetchpriority="high"`, the font stylesheet loaded as a preload
+then promoted so it never blocks first paint, `display=swap`, `noscript`
+fallback, and gtag `async` below the critical head. Whoever did `282ea63` did
+it properly. **The obvious "fix" of adding preconnect hints was recommended and
+then found to be already present.** Read the whole head before proposing
+anything here.
+
+**The real consequence is in the client report, not the site.**
+`kpw_monthly_report.js` takes a *single* PageSpeed sample. On the 15th it will
+report whatever number it happens to draw from a 74–93 range, and a run that
+lands on 74 after August's 88 will tell Mike his speed got worse when nothing
+changed. Worth taking a median of three runs, or reporting a band rather than a
+point.
+
+**If anyone measures this again:** take at least four readings and use the
+median. One or two readings cannot distinguish a regression from lab variance,
+which is exactly the mistake recorded above.
 
 ### Search Console: "Alternate page with proper canonical tag"
 
