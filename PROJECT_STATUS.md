@@ -262,19 +262,27 @@ point.
 median. One or two readings cannot distinguish a regression from lab variance,
 which is exactly the mistake recorded above.
 
-### Search Console: "Alternate page with proper canonical tag"
+### Search Console: "Alternate page with proper canonical tag" — FIXED, report will linger
 
-Reported for `/index.html`, validation failed 2026-09-04. **Not an error.**
-`/index.html` canonicals to `https://mikeservicesllc.com/` and the sitemap
-lists only the root, so Google found a duplicate and honoured the canonical —
-the tag working exactly as designed. Requesting validation will always fail,
-because the condition is permanent while the URL remains discoverable.
+Reported for `/index.html`; a validation attempt failed 2026-09-04.
 
-Fixed the underlying cause on 2026-09-06: the header logo linked to
+**It was never an error.** That status means Google found a duplicate URL and
+honoured the canonical — the tag working. `/index.html` canonicals to
+`https://mikeservicesllc.com/` and the sitemap lists only the root. Requesting
+validation will always fail, because the condition is permanent while the URL
+stays discoverable. **Do not request validation again.**
+
+**Cause removed 2026-09-06** (`2b3259c`): the header logo linked to
 `index.html` on all 11 pages, so every crawl rediscovered the duplicate. All
-now link to `/`. **Expect the GSC report to persist for weeks regardless** —
-Google keeps the URL until it stops recrawling it. Do not request validation
-again.
+now link to `/`.
+
+**Verified live 2026-09-07** — `href="index.html"` returns 0 across `/`,
+`/septic.html`, `/blog.html`, `/about.html` and `/contact.html`, the logo
+anchor is `href="/"`, and `/index.html` still canonicals to `/` as it should.
+
+**The GSC report will persist for weeks anyway.** Google keeps the URL in its
+index until it stops recrawling it, which is unrelated to the fix. Seeing the
+same email again is expected and needs no action.
 
 ---
 
