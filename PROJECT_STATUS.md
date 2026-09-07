@@ -1,6 +1,6 @@
 # Mike's Services LLC — Project Status
 
-**Last updated:** 2026-09-05
+**Last updated:** 2026-09-06
 **Live:** https://mikeservicesllc.com · Blog https://blog.mikeservicesllc.com
 **Repo:** `BbotAI/mikes-services-llc`, branch `main`, deployed by GitHub Pages
 
@@ -210,6 +210,53 @@ do not "fix" pages that do not exist.
   pipeline.** GSC access re-verified 2026-09-05. The only unverified step is the
   Gmail draft scope, which has a known re-auth failure path at
   `kpw_monthly_report.js:790`.
+
+---
+
+## 6a. Open items as of 2026-09-06
+
+### Mobile PageSpeed is 74 and that is a real regression
+
+Measured twice, same result, so it is not lab noise:
+
+| | Score | LCP | FCP | CLS | TBT |
+|---|---|---|---|---|---|
+| Mobile | **74** | 4.4–4.5 s | 3.4 s | 0 | 70 ms |
+| Desktop | 93 | 1.0 s | 0.7 s | 0.001 | 190 ms |
+
+The August client report showed **88** on mobile. It is now 74.
+
+**It is not the images.** The hero is 34 KB and CLS is a perfect 0 — the
+image-weight work in `282ea63` held. There is no Font Awesome on this site.
+
+**FCP of 3.4 s is the problem**, and on a flat static page that means
+render-blocking resources rather than payload. The head loads a Google Fonts
+stylesheet from `fonts.googleapis.com`, which costs a DNS lookup, a TLS
+handshake and a CSS round trip before anything paints, then fetches the font
+files from a second origin. LCP at 4.4 s is the hero waiting behind that.
+
+Worth trying, cheapest first:
+1. `<link rel="preconnect">` to `fonts.googleapis.com` and
+   `fonts.gstatic.com` (crossorigin) — one line, removes the handshake wait.
+2. Self-host the two font families and drop the external stylesheet entirely.
+3. Inline the critical CSS for the hero.
+
+**Do not skip re-measuring after each step.** Mobile Lighthouse moves ±10 run
+to run; take two readings before believing any change worked.
+
+### Search Console: "Alternate page with proper canonical tag"
+
+Reported for `/index.html`, validation failed 2026-09-04. **Not an error.**
+`/index.html` canonicals to `https://mikeservicesllc.com/` and the sitemap
+lists only the root, so Google found a duplicate and honoured the canonical —
+the tag working exactly as designed. Requesting validation will always fail,
+because the condition is permanent while the URL remains discoverable.
+
+Fixed the underlying cause on 2026-09-06: the header logo linked to
+`index.html` on all 11 pages, so every crawl rediscovered the duplicate. All
+now link to `/`. **Expect the GSC report to persist for weeks regardless** —
+Google keeps the URL until it stops recrawling it. Do not request validation
+again.
 
 ---
 
