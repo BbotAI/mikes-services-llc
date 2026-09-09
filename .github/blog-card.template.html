@@ -1,0 +1,19 @@
+<!-- blog-sync: image=w800 -->
+<!-- Width only, NO -c crop. The card CSS already crops (object-fit:cover over
+     a fixed height), so asking Blogger to crop as well crops twice and shears
+     the sides off a text-banner hero. w800 covers the card at 2x. -->
+          <!-- BLOG-{{SLOT}} -->
+          <article class="service-card blog-card">
+            <img
+              src="images/blog-placeholder.webp"
+              data-thumbnail="{{IMAGE}}"
+              alt="{{ALT}}"
+              width="600" height="400"
+              loading="lazy">
+            <div class="card-body">
+              <p class="blog-date">{{DATE}}</p>
+              <h3>{{TITLE}}</h3>
+              <p>{{EXCERPT}}</p>
+              <a href="{{URL}}" class="btn btn-outline" target="_blank" rel="noopener">Read More &rarr;</a>
+            </div>
+          </article>
