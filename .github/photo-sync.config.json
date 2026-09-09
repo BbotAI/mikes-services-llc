@@ -1,0 +1,67 @@
+{
+  "_comment": [
+    "Portal slot -> the image file(s) on this site, and the Cloudinary transform to fetch.",
+    "",
+    "The slot names are NOT arbitrary. The client portal builds them itself:",
+    "five fixed slots (hero-home, logo, featured-1, about-team, blog-placeholder)",
+    "plus one per service, named hero-<slug>, where slug is the service name",
+    "lowercased with every run of non-alphanumerics replaced by a hyphen.",
+    "'Excavation and Trenching' therefore becomes hero-excavation-and-trenching.",
+    "If a service is renamed in the Services sheet, its slot name changes with it",
+    "and this file must be updated or that slot silently stops publishing.",
+    "",
+    "A slot may write more than one file. On this site each service has a wide",
+    "page hero (hero-service-N.webp) and a smaller card thumbnail (septic.webp",
+    "and friends) that appears on the other service pages. The client is offered",
+    "one photo per service, so one upload feeds both, cropped differently.",
+    "",
+    "hero-service-N is positional on this site but the slot key is not: the map",
+    "below is explicit, so reordering services in the sheet cannot silently point",
+    "a photo at the wrong page.",
+    "",
+    "Transforms are Cloudinary's, applied on the fly. c_fill with g_auto picks",
+    "the crop, which matters because clients upload whatever aspect ratio their",
+    "phone produced. The logo uses c_limit so it is scaled, never cropped."
+  ],
+
+  "clientId": "MIKES_SERVICES_LLC",
+
+  "slots": {
+    "hero-home": [
+      { "file": "images/hero-home.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "logo": [
+      { "file": "images/logo.webp", "transform": "w_603,c_limit,f_webp,q_80" }
+    ],
+    "featured-1": [
+      { "file": "images/featured-1.webp", "transform": "w_1200,h_674,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "about-team": [
+      { "file": "images/about-team.webp", "transform": "w_720,h_1060,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "blog-placeholder": [
+      { "file": "images/blog-placeholder.webp", "transform": "w_600,h_400,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+
+    "hero-septic-installation": [
+      { "file": "images/hero-service-1.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/septic.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "hero-land-clearing": [
+      { "file": "images/hero-service-2.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/landClearing.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "hero-excavation-and-trenching": [
+      { "file": "images/hero-service-3.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/excavation.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "hero-demolition": [
+      { "file": "images/hero-service-4.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/demolition.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "hero-building-pad-and-site-prep": [
+      { "file": "images/hero-service-5.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/buildingPad.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+    ]
+  }
+}

@@ -16,3 +16,6 @@ images/_originals/
 
 # Blog post drafts for manual paste into Blogger - never deploy to the live site
 blog-drafts/
+
+# photo-sync writes this; it is committed by the Action, not ignored.
+# (listed here only so nobody adds it to an ignore rule by pattern)
