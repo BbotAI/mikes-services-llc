@@ -1,0 +1,30 @@
+# GitHub Pages / Jekyll build config.
+#
+# This site has no .nojekyll, so GitHub runs Jekyll over the repo and
+# publishes everything it does not exclude. That means every internal
+# markdown doc in this folder was being served on the client's own domain:
+# mikeservicesllc.com/BLOG_AGENT.md returned 200, as did TEMPLATE_GUIDE.md,
+# PROJECT_STATUS.md and the rest. robots.txt allows all crawlers, GPTBot and
+# ClaudeBot included, so agency process notes were publicly fetchable and
+# crawlable from a client site.
+#
+# These files still need to live in the repo. blog-sync reads BLOG_AGENT.md
+# from the checkout, and the rest are the working record. Excluding them
+# keeps them in git and out of the published site.
+#
+# Add any new internal doc here. The site itself is plain HTML and CSS, so
+# nothing below affects how the pages render.
+
+exclude:
+  - "*.md"
+  - "*.md.txt"
+  - "*.JPG"
+  - .claude/
+  - .github/
+  - blog-drafts/
+  - images/_originals/
+  - kpw_agent.py
+  - TEST_CLIENT_SIMULATOR.js
+  - DROP-IMAGES-HERE.txt
+
+# README stays excluded along with the rest; nothing here is meant to render.
