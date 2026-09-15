@@ -29,12 +29,38 @@
        competes with first paint. It is async, so page rendering never waits
        on it. Must stay after <meta charset>: the charset declaration has to
        appear within the first 1024 bytes of the document. -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S808CCL2SE"></script>
+  <!-- Analytics, loaded off the critical path.
+       gtag.js is 168 KB - the single heaviest request on this site, heavier
+       than every image on the page put together, and PageSpeed reports 71 KiB
+       of it as unused. Loaded normally it competes for a phone's bandwidth and
+       main thread during first paint, which is most of why the mobile score
+       sat at 72 while desktop was 99.
+       It now loads on whichever comes first: the visitor's first interaction,
+       or 3 seconds after the load event. A real visit is still counted - only
+       a bounce inside the first few seconds is missed, which is the trade for
+       the mobile score. Search Console, not Analytics, is what the monthly
+       client reports are built from. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-S808CCL2SE');
+    (function () {
+      var loaded = false;
+      function loadGtag() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-S808CCL2SE';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-S808CCL2SE');
+      }
+      var events = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+      events.forEach(function (e) {
+        window.addEventListener(e, loadGtag, { once: true, passive: true });
+      });
+      window.addEventListener('load', function () { setTimeout(loadGtag, 3000); });
+    })();
   </script>
 
   <!-- LocalBusiness Schema — AI SEO -->
