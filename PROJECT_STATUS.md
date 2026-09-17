@@ -336,3 +336,20 @@ Commits: `be11a1d`, `07a62be`, `82a9a22` here, plus `4f71083`, `70c47f1`,
 **Verified after the run:** 24 cards, all 24 thumbnails HTTP 200, all 24 post
 URLs HTTP 200, every blog link on every service page HTTP 200, 0 posts missing a
 service link, 0 duplicate insertions.
+
+---
+
+## 2026-09-16 — his blog has the Blogger empty-canonical bug (not in the emails yet)
+
+No Search Console email for Mike's properties this round, but
+blog.mikeservicesllc.com has the same theme defect found on the KPW and Pro
+Cleaning blogs: every post emits a second `<link href='' rel='canonical'/>`.
+The cost is already visible. Google is serving the `?m=1` copies instead of
+the posts: **338 impressions / 6 clicks on the `?m=1` land-clearing cost post,
+180 on the `?m=1` septic installation cost post.**
+
+- Fix: remove the hand-added `<b:if>` canonical block in Blogger -> Theme ->
+  Edit HTML. Steps and verify command: `BLOGGER_CANONICAL_FIX.md` (rewritten).
+- His blog sitemap was last read by Google **2026-07-02** (9 URLs; the blog now
+  has 25+). Resubmit after the theme fix.
+- Full record: kpw-agency-brain `SYSTEM_STATUS.md`, 2026-09-16.
