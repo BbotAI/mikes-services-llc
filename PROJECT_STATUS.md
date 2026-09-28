@@ -1,6 +1,6 @@
 # Mike's Services LLC — Project Status
 
-**Last updated:** 2026-09-06
+**Last updated:** 2026-09-27
 **Live:** https://mikeservicesllc.com · Blog https://blog.mikeservicesllc.com
 **Repo:** `BbotAI/mikes-services-llc`, branch `main`, deployed by GitHub Pages
 
@@ -353,3 +353,112 @@ the posts: **338 impressions / 6 clicks on the `?m=1` land-clearing cost post,
 - His blog sitemap was last read by Google **2026-07-02** (9 URLs; the blog now
   has 25+). Resubmit after the theme fix.
 - Full record: kpw-agency-brain `SYSTEM_STATUS.md`, 2026-09-16.
+
+---
+
+## 2026-09-27 — Phase 0 of the septic push: internal linking, not new pages
+
+Fresh Search Console pull the same day (28 days, `kpw_seo_check.js`):
+**748 impressions / 21 clicks (+40%) / avg position 24.1**, mobile 89,
+desktop 100. Growth is holding.
+
+### What the septic numbers actually say
+
+Broken out by query type, which is the part that changes the plan:
+
+| Query | Impr | Pos | Type |
+|---|---|---|---|
+| `mike septic service` | 20 | 35.2 | **brand** — looking for him by name |
+| `mike septic` | 16 | 34.4 | **brand** |
+| `saline county septic services` | 17 | 15.9 | real non-brand, in-area |
+| `septic system installation wichita ks` | 15 | 38.0 | **out of area — ignore** |
+| `septic companies near me` | ~1 | **1.0** | he is #1, it produced 1 click |
+
+Non-brand in-area septic demand is roughly **17 impressions a month, one
+query**. He is already position 1 for `septic companies near me`,
+`septic pumping near me` and `who cleans out septic tanks near me`, and that
+yields about one click, because a map pack sits above organic on all three and
+`client-data.json` still has `google_business_url: ""`. **Zero emergency-septic
+queries appeared in 28 days.**
+
+The read: the cap on septic is the missing Google Business Profile and 36
+impressions/month of people searching his own name at position 35 — not a
+shortage of septic pages. A five-page septic architecture was proposed
+(hub + installation + repair + pumping + emergency, behind a dropdown nav).
+It was cut to Phase 0 first, for the reason already in §6: breadth is what
+made every service page thin, `building-pad.html` is the control group at 88
+impressions / 0 clicks / position 63, and `services.html` is a hub that
+already earns nothing at position 57.
+
+### What shipped
+
+1. **Flat `Septic` nav item, first position, on all 11 pages.** No dropdown.
+   The nav is hand-duplicated and byte-identical across every page (there is
+   no include and no build step), so a two-level menu would have meant 11 nav
+   edits plus new CSS plus new JS — and `main.js` `initNav` binds `closeNav`
+   to *every* `nav a` click, so a parent item would slam the mobile menu shut
+   on tap before a submenu could open. Not worth it for this.
+2. **The homepage service grid is static HTML now** (`index.html`), five
+   cards, JS-enhanced rather than JS-generated. It was
+   `<div id="serviceGrid"><!-- Cards injected by main.js --></div>` — meaning
+   the site's strongest page (position 10.5, highest volume) passed **no
+   crawlable link to any service page**. Anchor text is the service name, not
+   "Learn More", so the link carries the keyword.
+3. **`main.js renderServices()` is now a fallback.** It returns early if the
+   grid already contains a `.service-card`. The `services` array is still how
+   you toggle a service on or off — **edit index.html AND main.js or the two
+   drift.**
+4. **Asset cache bust `?v=1` -> `?v=2`** on all 11 pages. Required: returning
+   visitors hold the old CSS otherwise. This is what `84fe744` was about.
+5. **`.nav.nav--open` max-height 440px -> 520px.** Measured at 390x844: the
+   open nav needs 422px. 440px still fit, but with 18px to spare — one more
+   item and `overflow: hidden` would have eaten the Get a Quote CTA with no
+   error anywhere.
+6. **Removed the `#serviceGrid` min-height reservation** (1550px desktop /
+   1900px mobile). It was a CLS hack for JS-injected cards; real content
+   reserves its own space now, and a guessed placeholder would only leave a
+   gap.
+
+### Internal links, before -> after
+
+| Page | Before | After |
+|---|---|---|
+| `septic.html` | 9 files / 9 links | **11 files / 21 links** |
+| `excavation.html` | 8 / 8 | 9 / 9 |
+| `land-clearing.html` | 8 / 8 | 9 / 9 |
+| `demolition.html` | 8 / 8 | 9 / 9 |
+| `building-pad.html` | 8 / 8 | 9 / 9 |
+
+§5 documents that service-page rank tracks inbound internal link count almost
+linearly on this site. This is that lever pulled, for free, with no new URLs.
+
+### Verified before commit
+
+Headless Chromium, local server, desktop 1400x900 and mobile 390x844:
+nav reads `Septic | Services | Service Areas | About | Contact | Blog`, 438px
+of a 1100px header, no wrap, no horizontal overflow; 5 cards render with 5/5
+images loaded; mobile nav opens to 422px against a 520px cap with **0px
+clipped** and the CTA fully visible; **no console errors on either viewport**.
+All 11 pages pass HTML nesting and JSON-LD validation.
+
+### Still open, and still the actual priority
+
+- **Google Business Profile.** Unchanged, still `""`. Position 1 organic on
+  three "near me" septic terms producing one click is the cleanest possible
+  proof that this is the ceiling. Everything else is downstream of it.
+- **Phase 1, only after GBP:** two leaves, not five — `septic-pumping.html`
+  (he is #1 for two pumping queries with no dedicated page) and
+  `septic-repair.html`. Installation **stays on `septic.html`**; that is where
+  its 15 blog links and position-16 authority live. Skip the overview hub
+  (`septic.html` already runs the four-way triage, added 2026-09-13) and skip
+  emergency (no query demand; the 24/7 band, the footer line and the sticky
+  mobile Call bar already cover it).
+- **Before any new page ships:** there is **no `BreadcrumbList` schema
+  anywhere on the site** and **no `<lastmod>` in `sitemap.xml`**. A hub/leaf
+  architecture without breadcrumbs is invisible as a hierarchy, and the
+  2026-09-18 agency-brain entry is what a stale sitemap costs. Request
+  Indexing is manual and Kaleb-only.
+- **Judge Phase 1 at six weeks, not one.** Bar set in advance: both leaves
+  reach position <30 and >=1 click by 2026-11-15. If they behave like
+  `building-pad.html`, stop adding septic pages and spend the effort on GBP
+  and reviews.

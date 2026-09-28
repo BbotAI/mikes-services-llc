@@ -105,6 +105,14 @@ function renderServices() {
   const grid = document.getElementById('serviceGrid');
   if (!grid) return;
 
+  // index.html now ships these five cards as static HTML, so the homepage
+  // passes real crawlable links to every service page instead of links that
+  // only exist after this script runs. If cards are already in the markup,
+  // leave them alone — that markup is the source of truth. This function is
+  // the fallback for an empty grid, and the `services` array above is still
+  // how you toggle a service on or off. Edit both or they drift.
+  if (grid.querySelector('.service-card')) return;
+
   const activeServices = services.filter(s => s.active && s.name);
 
   if (activeServices.length === 0) {

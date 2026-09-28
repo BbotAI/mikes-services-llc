@@ -22,7 +22,7 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap">
   </noscript>
-  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="styles.css?v=2">
   <link rel="preload" as="image" href="images/logo.webp" fetchpriority="high">
 
   <!-- Google tag (gtag.js) — kept below the critical head so analytics never
@@ -257,6 +257,7 @@
         <div class="tag">Salina, Kansas</div>
       </div>
       <nav class="nav" id="nav">
+        <a href="septic.html">Septic</a>
         <a href="services.html">Services</a>
         <a href="service-area.html">Service Areas</a>
         <a href="about.html">About</a>
@@ -309,8 +310,62 @@
       <div class="container">
         <h2>Our Services</h2>
         <p class="section-sub">Straightforward, dependable site work across Central Kansas.</p>
+        <!-- These five cards are STATIC HTML on purpose, and this is the source
+             of truth for the homepage grid. They used to be injected by
+             main.js renderServices(), which meant the homepage passed no
+             crawlable link to any service page — Search Console showed service
+             pages at positions 36-63 while their ranking tracked inbound
+             internal link count almost exactly. main.js now only fills this
+             grid if it is empty, so it stays a fallback and the `services`
+             array there is still the place to toggle a service on or off.
+             Change a service here AND in main.js, or the two will drift.
+             Anchor text is the service name rather than "Learn More" so the
+             link itself carries the keyword. -->
         <div class="service-grid" id="serviceGrid">
-          <!-- Cards injected by main.js -->
+          <article class="service-card">
+            <div class="service-media">
+              <img src="./images/septic.webp" alt="Septic installation in Salina, Kansas — Mike's Services LLC" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Septic Services</h3>
+            <p>Septic installation, repair, pumping and inspection for rural and residential property across Saline County and Central Kansas. We handle excavation, drain fields and county inspector coordination.</p>
+            <a class="btn btn-outline" href="septic.html">Septic Services in Salina</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-media">
+              <img src="./images/excavation.webp" alt="Excavation and trenching in Central Kansas — Mike's Services LLC" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Excavation &amp; Trenching</h3>
+            <p>Excavation and trenching for utilities, foundations, driveways, and rural projects across Central Kansas.</p>
+            <a class="btn btn-outline" href="excavation.html">Excavation &amp; Trenching</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-media">
+              <img src="./images/landClearing.webp" alt="Land clearing job in Central Kansas — Mike's Services LLC" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Land Clearing</h3>
+            <p>Property clearing, pasture clearing, brush removal, and debris hauling for residential and commercial lots.</p>
+            <a class="btn btn-outline" href="land-clearing.html">Land Clearing</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-media">
+              <img src="./images/demolition.webp" alt="Demolition removal in Central Kansas — Mike's Services LLC" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Demolition &amp; Removal</h3>
+            <p>Small or large demolition, removal, and clean-up work with safe disposal and efficient hauling.</p>
+            <a class="btn btn-outline" href="demolition.html">Demolition &amp; Removal</a>
+          </article>
+
+          <article class="service-card">
+            <div class="service-media">
+              <img src="./images/buildingPad.webp" alt="Building pad and site prep in Central Kansas — Mike's Services LLC" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Building Pad &amp; Site Prep</h3>
+            <p>Precision grading and compaction for building pads, pole barns, driveways, and new construction sites across Central Kansas.</p>
+            <a class="btn btn-outline" href="building-pad.html">Building Pad &amp; Pole Barn Prep</a>
+          </article>
         </div>
       </div>
     </section>
@@ -539,6 +594,6 @@
 
   <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
 
-  <script src="main.js?v=1" defer></script>
+  <script src="main.js?v=2" defer></script>
 </body>
 </html>
