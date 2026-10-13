@@ -20,7 +20,7 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap">
   </noscript>
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 
   <!-- Google tag (gtag.js) — kept below the critical head so analytics never
        competes with first paint. It is async, so page rendering never waits
@@ -164,6 +164,16 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://mikeservicesllc.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Septic Service", "item": "https://mikeservicesllc.com/septic.html"}
+    ]
+  }
+  </script>
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
@@ -180,7 +190,17 @@
         <div class="tag">Salina, Kansas</div>
       </div>
       <nav class="nav" id="nav">
-        <a href="septic.html">Septic</a>
+        <div class="nav-group">
+          <a href="septic.html" class="nav-parent">Septic</a>
+          <div class="nav-sub">
+            <a href="septic.html" aria-current="page">Septic Service Overview</a>
+            <a href="septic-pumping.html">Septic Tank Pumping</a>
+            <a href="sewer-drain-cleaning.html">Sewer &amp; Drain Cleaning</a>
+            <a href="septic-repair.html">Septic Repair</a>
+            <a href="septic-inspection.html">Septic Inspection</a>
+            <a href="septic-perc-test.html">Perc Test &amp; Soil Testing</a>
+          </div>
+        </div>
         <a href="services.html">Services</a>
         <a href="service-area.html">Service Areas</a>
         <a href="about.html">About</a>
@@ -212,6 +232,16 @@
         </div>
       </div>
     </section>
+
+    <!-- BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">Septic Service</li>
+        </ol>
+      </div>
+    </nav>
 
     <!-- EMERGENCY CALLOUT -->
     <section class="section" style="background:#8B0000;padding:32px 0">
@@ -281,10 +311,12 @@
         <p class="section-sub">Four different jobs. Most people call about one and need another &mdash; so here is how to tell them apart.</p>
         <div style="max-width:680px">
           <ul style="color:var(--muted);display:flex;flex-direction:column;gap:14px;padding-left:20px;line-height:1.7">
-            <li><strong style="color:var(--text)">New installation</strong> &mdash; building on raw ground, replacing a system that has failed past repair, or adding enough load that the existing system can't keep up.</li>
-            <li><strong style="color:var(--text)">Septic repair</strong> &mdash; a failing drain field, a cracked or collapsed tank, a broken distribution box, or lines that have crushed or rooted over.</li>
-            <li><strong style="color:var(--text)">Septic pumping</strong> &mdash; routine tank service. If you can't remember the last time yours was pumped, it is due.</li>
-            <li><strong style="color:var(--text)">Septic inspection</strong> &mdash; buying or selling a rural property, or confirming a system is sound before you spend money on it.</li>
+            <li><strong style="color:var(--text)">New installation</strong> &mdash; building on raw ground, replacing a system that has failed past repair, or adding enough load that the existing system can't keep up. That is this page, below.</li>
+            <li><a href="septic-repair.html"><strong>Septic repair</strong></a> &mdash; a failing drain field, a cracked or collapsed tank, a broken distribution box, or lines that have crushed or rooted over.</li>
+            <li><a href="septic-pumping.html"><strong>Septic tank pumping</strong></a> &mdash; routine tank service and clean-outs. If you can't remember the last time yours was pumped, it is due.</li>
+            <li><a href="septic-inspection.html"><strong>Septic inspection</strong></a> &mdash; buying or selling a rural property, or confirming a system is sound before you spend money on it.</li>
+            <li><a href="sewer-drain-cleaning.html"><strong>Sewer line &amp; drain cleaning</strong></a> &mdash; sewer backups, blocked lateral lines, yard drains and drain tile. 24/7 for the emergencies.</li>
+            <li><a href="septic-perc-test.html"><strong>Perc test &amp; soil testing</strong></a> &mdash; the soil evaluation that decides what system your ground will actually take.</li>
           </ul>
           <p style="margin-top:18px;color:var(--muted);line-height:1.7"><strong style="color:var(--text)">Not sure which one you need?</strong> Call <a href="tel:7854887925">785-488-7925</a> and describe what you're seeing. Read the full breakdown: <a href="https://blog.mikeservicesllc.com/2026/09/saline-county-septic-services-install-repair-pumping.html" target="_blank" rel="noopener">Septic Services in Saline County KS</a>.</p>
         </div>
@@ -331,6 +363,40 @@
             <p>System size is determined by the number of bedrooms in the home, estimated daily water usage, and the results of the soil percolation test. We evaluate your specific property and design the system to meet both your needs and county requirements.</p>
           </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- SEPTIC CLUSTER -->
+    <!-- Added 2026-10-12 with the five leaf pages. This block and the nav
+         dropdown are the whole reason the leaves can rank: septic.html holds
+         21 internal links and sits around position 16, and these links share
+         that authority downward instead of letting six pages compete. -->
+    <section class="section" style="background:var(--bg-subtle)">
+      <div class="container">
+        <h2>Septic Services in Salina &amp; Saline County</h2>
+        <p class="section-sub">Each one has its own page with the detail on it.</p>
+        <div class="sibling-grid">
+          <article class="sibling-card">
+            <h3><a href="septic-pumping.html">Septic Tank Pumping</a></h3>
+            <p>Routine tank pump-outs and clean-outs. If you cannot remember the last one, it is due.</p>
+          </article>
+          <article class="sibling-card">
+            <h3><a href="sewer-drain-cleaning.html">Sewer &amp; Drain Cleaning</a></h3>
+            <p>Sewer line backups, lateral lines, yard drains and drain tile. 24/7 for the emergencies.</p>
+          </article>
+          <article class="sibling-card">
+            <h3><a href="septic-repair.html">Septic Repair</a></h3>
+            <p>Failing drain fields, cracked or collapsed tanks, broken distribution boxes and crushed lines.</p>
+          </article>
+          <article class="sibling-card">
+            <h3><a href="septic-inspection.html">Septic Inspection</a></h3>
+            <p>Buying or selling a rural property, or confirming a system is sound before you spend money on it.</p>
+          </article>
+          <article class="sibling-card">
+            <h3><a href="septic-perc-test.html">Perc Test &amp; Soil Testing</a></h3>
+            <p>Soil percolation testing and site evaluation &mdash; the step that decides what the ground will take.</p>
+          </article>
         </div>
       </div>
     </section>

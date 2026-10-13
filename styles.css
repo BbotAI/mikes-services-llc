@@ -822,13 +822,23 @@ a { transition: color 0.2s; }
     transition: max-height 0.32s ease;
   }
 
-  /* Must clear the full stack or `overflow: hidden` silently cuts off the
-     bottom item. Measured in headless Chromium at 390x844 after the Septic
-     link was added: the open nav needs 422px. The previous 440px still fit,
-     but with only 18px to spare — one more nav item, or a font bump, would
-     have eaten the Get a Quote CTA with no error anywhere. 520px measured
-     clean at 0px clipped. Re-measure if a nav item is ever added. */
-  .nav.nav--open { max-height: 520px; }
+  /* 2026-10-12: the fixed pixel cap is gone, and deliberately so.
+     It was 520px against a measured 422px need. Adding the Septic dropdown's
+     six sub-items took the open nav to roughly 650px, which would have blown
+     straight through that cap — and the failure mode is silent: `overflow:
+     hidden` just eats the Get a Quote CTA with no error anywhere. A bigger
+     number would only move the cliff (an iPhone SE at 375x667 has ~600px of
+     room, less than the menu now needs).
+     So the cap is now the viewport itself and the menu scrolls instead of
+     clipping. dvh second so it wins where supported, which keeps it correct
+     while mobile browser chrome slides in and out. This class of bug cannot
+     recur: there is no longer a magic number to outgrow. */
+  .nav.nav--open {
+    max-height: calc(100vh - 64px);
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 
   .nav a {
     padding: 0 24px;
@@ -963,3 +973,170 @@ a { transition: color 0.2s; }
   .blog-pager__btn { padding: 9px 11px; min-width: 38px; font-size: .85rem; }
   .blog-pager__btn--edge { padding-left: 13px; padding-right: 13px; }
 }
+
+/* ============================================================
+   SEPTIC DROPDOWN, BREADCRUMBS & CLUSTER CROSS-LINKS
+   Added 2026-10-12 with the five septic leaf pages.
+
+   NO JAVASCRIPT. That is the whole design, and it is why this
+   was previously considered too expensive to build.
+   main.js initNav() binds closeNav to EVERY `nav a` click, so a
+   JS accordion parent would slam the mobile menu shut on tap
+   before a submenu could open. The way around it is to not need
+   JS: desktop opens on :hover/:focus-within, mobile renders the
+   sub-items as an indented list that is simply always visible.
+   The "Septic" parent stays a real link to septic.html, so
+   tapping it on a phone navigates to the hub and closes the menu
+   — which is correct behaviour, not the bug it looked like.
+   ============================================================ */
+
+.nav-group { position: relative; display: flex; align-items: center; }
+.nav-sub { display: none; }
+
+@media (min-width: 901px) {
+  .nav-parent::after {
+    content: " \25BE";
+    font-size: 0.68em;
+    opacity: 0.8;
+    margin-left: 3px;
+  }
+
+  /* Invisible bridge across the gap between the link and the panel,
+     so travelling the mouse down does not close the menu. */
+  .nav-group::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 14px;
+  }
+
+  .nav-sub {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: -16px;
+    min-width: 252px;
+    flex-direction: column;
+    background: #1C3D5A;
+    border-top: 2px solid var(--color-accent);
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+    padding: 6px 0;
+    z-index: 50;
+  }
+
+  .nav-group:hover .nav-sub,
+  .nav-group:focus-within .nav-sub { display: flex; }
+
+  .nav-sub a {
+    padding: 10px 18px;
+    font-weight: 500;
+    font-size: 0.89rem;
+    white-space: nowrap;
+    border-bottom: none;
+  }
+
+  .nav-sub a:hover,
+  .nav-sub a:focus {
+    background: rgba(255,255,255,0.09);
+    color: var(--color-accent);
+    border-bottom-color: transparent;
+  }
+
+  .nav-sub a[aria-current="page"] { color: var(--color-accent); }
+}
+
+@media (max-width: 900px) {
+  /* The nav is a column here, so the group has to stop being a flex row
+     or the parent link and the sub-panel would sit side by side. */
+  .nav-group { display: block; width: 100%; }
+
+  .nav-sub { display: flex; flex-direction: column; }
+
+  .nav-sub a {
+    padding-left: 44px;
+    min-height: 46px;
+    font-size: 0.93rem;
+    font-weight: 500;
+    background: rgba(0,0,0,0.16);
+  }
+
+  .nav-sub a[aria-current="page"] { color: var(--color-accent); }
+}
+
+/* ---------- Breadcrumbs ----------
+   The visible trail mirrors the BreadcrumbList JSON-LD on each leaf
+   exactly. Google wants the markup to describe something a visitor can
+   actually see, and this is also the only place on the site that states
+   the hub/leaf hierarchy in plain language. */
+
+.breadcrumb {
+  background: var(--bg-subtle);
+  border-bottom: 1px solid rgba(12,30,50,0.07);
+  padding: 11px 0;
+  font-size: 0.85rem;
+}
+
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+}
+
+.breadcrumb li + li::before {
+  content: "\203A";
+  opacity: 0.55;
+}
+
+.breadcrumb a { color: var(--color-accent); text-decoration: none; }
+.breadcrumb a:hover,
+.breadcrumb a:focus { text-decoration: underline; }
+.breadcrumb li[aria-current="page"] { color: var(--text); font-weight: 600; }
+
+/* ---------- Septic cluster cross-links ----------
+   Every leaf links to every sibling and back up to septic.html. This is
+   the point of the architecture: septic.html carries 21 internal links
+   and a position around 16, and the leaves share that rather than
+   competing with it. */
+
+.sibling-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(242px, 1fr));
+  gap: 18px;
+}
+
+.sibling-card {
+  background: var(--bg);
+  border: 1px solid rgba(12,30,50,0.09);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+
+.sibling-card h3 { margin: 0 0 8px; font-size: 1.02rem; line-height: 1.35; }
+.sibling-card h3 a { color: var(--color-primary); text-decoration: none; }
+.sibling-card h3 a:hover,
+.sibling-card h3 a:focus { color: var(--color-accent); text-decoration: underline; }
+.sibling-card p { margin: 0; color: var(--muted); font-size: 0.93rem; line-height: 1.6; }
+
+.card-sublinks {
+  margin: -6px 0 14px;
+  font-size: 0.86rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.card-sublinks a { color: var(--color-accent); text-decoration: none; }
+.card-sublinks a:hover,
+.card-sublinks a:focus { text-decoration: underline; }

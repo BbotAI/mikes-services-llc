@@ -1,6 +1,6 @@
 # Mike's Services LLC — Project Status
 
-**Last updated:** 2026-09-27
+**Last updated:** 2026-10-12
 **Live:** https://mikeservicesllc.com · Blog https://blog.mikeservicesllc.com
 **Repo:** `BbotAI/mikes-services-llc`, branch `main`, deployed by GitHub Pages
 
@@ -353,6 +353,191 @@ the posts: **338 impressions / 6 clicks on the `?m=1` land-clearing cost post,
 - His blog sitemap was last read by Google **2026-07-02** (9 URLs; the blog now
   has 25+). Resubmit after the theme fix.
 - Full record: kpw-agency-brain `SYSTEM_STATUS.md`, 2026-09-16.
+
+---
+
+## 2026-10-12 — Phase 1 shipped: five septic leaf pages + a dropdown nav
+
+**Fresh Search Console pull the same day** (90 days, 2026-07-12 → 2026-10-10,
+service account, both properties). This replaces the §5 read, and one number
+in §6/§2026-09-27 was simply wrong.
+
+### ❌ THE OLD CLAIM "SEPTIC IS ~17 IMPRESSIONS A MONTH, ONE QUERY" WAS WRONG
+
+Over 90 days: **76 septic-family queries, 328 impressions, 2 clicks — 28.7% of
+all site impressions.** Septic is nearly a third of his search footprint. The
+17-impression figure came from counting one query instead of the family.
+
+**And the shape of it is the whole strategy:**
+
+    HE IS ALREADY TOP-12 HERE, AND THE VOLUME IS NOT:
+      septic companies near me              1 impr   pos  1.0
+      septic pumping near me                1 impr   pos  1.0
+      septic tank installers                1 impr   pos  2.0
+      septic inspection services            1 impr   pos  4.0
+      septic installation companies near me  4 impr   pos  5.8
+      septic perc test near me               1 impr   pos  6.0
+      septic tank pumping near me            7 impr   pos 10.6
+        (~20 terms, all 1-7 impressions each)
+
+    THE VOLUME IS HERE, AND HE IS ON PAGE 3:
+      mike septic service                   43 impr   pos 39.2   BRAND
+      saline county septic services         37 impr   pos 27.8
+      mike septic                           28 impr   pos 34.1   BRAND
+      salina septic                         12 impr   pos 30.8
+
+🔴 **"Near me" is geo-personalised, so it only fires for people physically
+close, and rural Saline County has not got the population to make it matter.
+Ranking #1 on "near me" here is worth about one click a quarter.** The
+winnable targets are the explicitly geo-modified terms at positions 27-31.
+**76 impressions are people typing his own name** and landing at 34-39, plus
+`mikes` alone at **103 impressions / 0 clicks / position 5.8**, the biggest
+single query on the site.
+
+### 🔴 THE BLOG WAS BEATING THE MONEY PAGE — THIS IS WHY THE HUB EXISTS
+
+Same query, both properties, same 90 days:
+
+    saline county septic services
+      blog.mikeservicesllc.com      23 impr   pos 11.0
+      mikeservicesllc.com/septic    37 impr   pos 27.8   <- 17 positions WORSE
+
+Same on land clearing: the blog holds `land clearing` at **229 impressions,
+position 18.0**. **And the blog converts nothing** — 0 clicks on all 39
+septic-family impressions, because it is a Blogger subdomain with no quote
+form and no phone CTA above the fold.
+
+On 2026-09-05 a post was written targeting `saline county septic services`.
+It worked. It just won on the wrong domain. **That was our error, and the
+hub-and-spoke wiring below is the correction.**
+
+### What shipped
+
+**Five new leaf pages**, each targeting a DISTINCT query cluster so they
+cannot cannibalise each other or `septic.html`:
+
+    septic-pumping.html        already pos 1-16 on 5 pumping terms, no page
+    sewer-drain-cleaning.html  ~77 impressions, pos 42-95, ZERO coverage
+    septic-repair.html         carries the 24/7 claim, had no page
+    septic-inspection.html     1-2 impr, already pos 4-7  <- WEAK BET, see below
+    septic-perc-test.html      1 impr, already pos 6.0    <- WEAK BET, see below
+
+✅ **The sewer/drain cluster is the real find.** 15 queries, ~77 impressions,
+every one at position 42-95, and **not one of the 26 blog posts touches it.**
+`sewer backup cleaning services near me` 17 impr pos 61.8,
+`emergency sewer backup near me` 13 impr pos 42.1,
+`underground drain cleaning service` 11 impr pos 72.6,
+`yard drain cleaning services` 10 impr pos 50.1,
+`sewer line repair salina ks` pos 42.0. Kaleb confirmed Mike does this work
+— lateral and sewer lines, pump out and clean out, has the truck, 24/7.
+**LilyPad has a dedicated `/sewer-services-salina/` page for exactly this.**
+
+⚠️ **Inspection and perc test are honestly the two weakest pages in the set**
+on search volume, and were built because Mike does the work and because the
+blog README calls inspection a realtor referral asset. **Same six-week bar
+applies to them as to the other three.**
+
+### ❌ WHAT WAS REFUSED, AND WHY — DO NOT REVISIT WITHOUT A REASON
+
+Kaleb asked for **geo pages per town, LilyPad-style** ("if it helps Mike
+rank"). **It does not, so they were not built.** LilyPad splits
+`/sewer-services-salina/` because they serve **two** markets, Salina and
+Hutchinson. Mike serves one market across six counties. Service x town would
+be up to 18 near-identical pages, which is the doorway-page pattern Google
+names explicitly, and the volume is not there:
+`septic tank pumping valley falls ks` drew **4 impressions in 90 days.**
+**Geo lives INSIDE each page** — title, H1, copy and `AdministrativeArea`
+schema — which is what `septic.html` already does (Salina x10, Saline x13).
+
+### ✅ THE DROPDOWN NEEDED NO JAVASCRIPT, AND THE 2026-09-27 OBJECTION WAS WRONG
+
+The §2026-09-27 entry rejected a dropdown partly because `main.js initNav`
+binds `closeNav` to **every** `nav a` click, so a parent item would slam the
+mobile menu shut on tap. **That fact is true — verified again today — but the
+conclusion drawn from it was not.** It assumed a JS accordion was required.
+
+    desktop   CSS :hover / :focus-within opens the panel
+    mobile    sub-items render as an indented list, always visible
+    parent    stays <a href="septic.html"> — tapping it on a phone goes to
+              the hub AND closes the menu, which is CORRECT, not a bug
+
+**`main.js` was not touched at all.**
+
+### 🔴 THE FIXED max-height CAP IS GONE, AND THAT BUG CLASS IS CLOSED
+
+`.nav.nav--open` was `max-height: 520px` with `overflow: hidden`, against a
+measured need of 422px. The six sub-items take the open nav to **698px** —
+straight through the cap, and the failure is **silent**: it just eats the Get
+a Quote CTA. Raising the number would only move the cliff; an iPhone SE has
+~600px of room, less than the menu now needs.
+
+It is now `max-height: calc(100dvh - 64px)` with `overflow-y: auto`.
+**Measured in headless Chromium:**
+
+    iPhone 14  390x844   content 698px   visible 698px   0px clipped
+    iPhone SE  375x667   content 698px   visible 603px   95px, SCROLLABLE
+
+**95px that the old cap would have silently swallowed.** There is no longer a
+magic number to outgrow.
+
+### The hub-and-spoke wiring — the part that actually makes this rank
+
+`septic.html` holds 21 internal links and sits around position 16.7. The
+leaves share that instead of competing for it:
+
+  - `septic.html`'s four-item service list is now **six linked items**, anchor
+    text matching each leaf's target query (3 links to each leaf in total)
+  - a sibling grid on the hub, and on every leaf, linking the whole cluster
+  - the **homepage** septic card gained a sub-link row — `/` is the strongest
+    page on the site (121 impr, pos 10.5), so those are the best internal
+    links available
+  - `BreadcrumbList` JSON-LD **plus a visible trail** on the hub and all five
+    leaves, verified to match each other exactly. **This is what §6 meant by
+    breadcrumbs being a prerequisite** — they were pointless on a flat site
+    and they earn their keep now that `Home > Septic Service > Pumping` is
+    real hierarchy
+  - `sitemap.xml` rebuilt: 16 URLs, and **`<lastmod>` on every entry** (it
+    previously had zero, flagged in §6 as a prerequisite)
+  - `styles.css?v=2` → **`?v=3`** across all 16 pages, per the cache-busting
+    rule at the top of `styles.css`. `main.js?v=2` is unchanged because
+    `main.js` is unchanged.
+
+⚠️ **STILL OUTSTANDING, AND IT IS KALEB'S TO RUN:** the 14 septic blog posts
+should point at the matching new leaf with exact anchor text. That needs
+`blogLinkApply()` in `kpw-agency-brain` and was deliberately not touched from
+here. **Until that runs, the blog still outranks the cluster for
+`saline county septic services`.**
+
+### Verified before commit
+
+`verify-septic-cluster.mjs` in the `run-mikes-services-llc` skill. Headless
+Chromium, local server, measurements not screenshots — both failure modes
+here are silent. **All checks passed:** 0 console errors and HTTP 200 across
+all 16 pages; dropdown closed by default, opens on hover AND on keyboard
+focus, 6 items, all on-screen; desktop nav one row at 452px; mobile 14 links
+all with real dimensions on both viewports, CTA reachable, sub-link tap
+navigates, no horizontal overflow; visible breadcrumb string identical to the
+`BreadcrumbList` JSON-LD on all six pages. Plus 0 broken internal links or
+images across 16 pages, HTML nesting balanced, and 4/4 valid JSON-LD blocks
+per leaf (`LocalBusiness`, `Service`, `BreadcrumbList`, `FAQPage`).
+
+### 🔴 THE BAR, SET IN ADVANCE
+
+`building-pad.html` is the control group: **88 impressions, 0 clicks,
+position 63**, and `services.html` is **67 / 0 / 57**. Breadth is what made
+those thin.
+
+**Each new leaf must reach position <30 and >=1 click within six weeks of
+being indexed — so by 2026-11-23.** A leaf that behaves like
+`building-pad.html` gets folded back into `septic.html` rather than defended.
+
+⚠️ **AND AN HONEST CEILING: this probably will not take `salina septic` to
+the top of page 1 on its own.** LilyPad has been in Salina since 2016, is BBB
+A+, and **absorbed Fuller Septic, which served Saline County from 1952** — so
+they hold 70+ years of local brand equity, a live GBP and reviews. Mike's GBP
+is **blocked in Google's verification step, not forgotten** (Kaleb is on it).
+This cluster is the best available move *while* GBP is blocked. It is not a
+substitute for it. Expect positions 27-31 to move into the teens.
 
 ---
 
