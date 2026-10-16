@@ -438,6 +438,16 @@ errors. Blog-sync dry run found 26/26 posts carded.
 
 ---
 
+**Later the same day:** secondary buttons are now filled orange, and the
+card links sit on one line. **Blurry photos:** five uploads are only
+**206x206** (pumping, sewer & drain, repair, inspection, excavation), likely
+saved from a thumbnail rather than the camera roll, so they are stretched to
+1200px. The fix is re-uploading the originals. The portal now warns on any
+website photo under 900px, so Mike can see which ones to replace. Kaleb
+requested indexing on the new pages the same day.
+
+---
+
 ## 2026-10-15 — septic pages get their own photos and portal slots
 
 **The bug Kaleb caught:** the five septic pages from 2026-10-12 were showing
