@@ -347,15 +347,25 @@ function existingUrls(html, blog) {
 
 // ── render ────────────────────────────────────────────────────────────────
 
+/**
+ * No long dashes on Mike's site (Kaleb, 2026-10-16). The Blogger posts still
+ * carry them, so the card text is cleaned here: a dash in a title becomes a
+ * colon, one in running text a comma. The post on Blogger is untouched.
+ */
+const undash = (s, sep) => String(s == null ? '' : s)
+  .replace(/\s*[—–]\s*/g, sep)
+  .replace(/\s+--\s+/g, sep);
+
 function render(tpl, post, slot, style) {
-  const alt = style.altSuffix ? `${post.title} — ${style.altSuffix}` : post.title;
+  const title = undash(post.title, ': ');
+  const alt = style.altSuffix ? `${title} | ${style.altSuffix}` : title;
   const map = {
     SLOT: String(slot),
     URL: esc(post.url),
-    TITLE: pretty(post.title),
+    TITLE: pretty(title),
     DATE: esc(post.dateLabel),
     DATE_ISO: esc(post.dateIso),
-    EXCERPT: pretty(post.excerpt),
+    EXCERPT: pretty(undash(post.excerpt, ', ')),
     IMAGE: esc(post.image || style.placeholder || ''),
     ALT: pretty(alt)
   };
@@ -367,7 +377,7 @@ function render(tpl, post, slot, style) {
 
 function schema(post, style) {
   const o = { '@context': 'https://schema.org', '@type': 'BlogPosting',
-              headline: post.title, description: excerpt(post.plain, 200),
+              headline: undash(post.title, ': '), description: undash(excerpt(post.plain, 200), ', '),
               url: post.url, datePublished: post.dateIso };
   if (style.author) o.author = { '@type': 'Person', name: style.author, url: style.authorUrl };
   if (style.publisher) o.publisher = { '@type': 'Organization', name: style.publisher, url: style.publisherUrl };

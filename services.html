@@ -20,7 +20,7 @@
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap">
   </noscript>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 
   <!-- Google tag (gtag.js) — kept below the critical head so analytics never
        competes with first paint. It is async, so page rendering never waits
@@ -137,7 +137,7 @@
       <div class="container hero-inner">
         <div class="hero-copy">
           <h1>Our Services in Salina & Central Kansas</h1>
-          <p class="lead">From septic installation to full site demolition — Mike's Services LLC handles the heavy work for property owners across Central Kansas.</p>
+          <p class="lead">Septic first, and the site work that goes with it. Mike's Services LLC handles the heavy work for property owners across Central Kansas.</p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="contact.html">Get a Quote</a>
             <a class="btn btn-outline" href="tel:7854887925">Call Now</a>
@@ -146,57 +146,102 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" style="background:var(--bg-subtle)">
       <div class="container">
-        <h2>What We Do</h2>
-        <p class="section-sub">Five core services built for rural and residential property owners in Central Kansas.</p>
-        <div class="service-grid">
-
-          <article class="service-card">
+        <span class="eyebrow">What Mike does every day</span>
+        <h2>Septic Services</h2>
+        <p class="section-sub">Septic is most of what we do: new systems, pump-outs, repairs, inspections and soil tests, across Saline County and Central Kansas.</p>
+        <div class="septic-grid">
+          <article class="service-card service-card--septic">
             <div class="service-media">
-              <img src="images/septic.webp" alt="Septic installation in Salina Kansas — Mike's Services LLC" loading="lazy" width="640" height="420">
+              <img src="./images/septic.webp" alt="New septic system installation in Salina, Kansas" loading="lazy" decoding="async" width="800" height="450">
             </div>
             <h3>Septic Installation</h3>
-            <p>Full septic system installation including excavation, tank placement, drain field design, and inspector coordination across Central Kansas.</p>
-            <a class="btn btn-outline" href="septic.html">Learn More</a>
+            <p>New systems for raw ground, and replacements for systems that have failed past fixing. Dug, set, laid out, backfilled and graded, with the county inspections handled.</p>
+            <a class="card-link" href="septic.html">Septic installation in Salina</a>
           </article>
-
-          <article class="service-card">
+          <article class="service-card service-card--septic">
             <div class="service-media">
-              <img src="images/excavation.webp" alt="Excavation and trenching in Central Kansas — Mike's Services LLC" loading="lazy" width="640" height="420">
+              <img src="./images/card-septic-pumping.webp" alt="Mike's septic pump truck on a tank pump-out in Saline County" loading="lazy" decoding="async" width="800" height="450">
             </div>
-            <h3>Excavation & Trenching</h3>
-            <p>Excavation and trenching for utilities, foundations, driveways, and rural projects. Practical solutions for property owners across Central Kansas.</p>
-            <a class="btn btn-outline" href="excavation.html">Learn More</a>
+            <h3>Septic Tank Pumping</h3>
+            <p>Routine pump-outs and clean-outs with our own truck. If you can't remember the last time yours was pumped, it is due.</p>
+            <a class="card-link" href="septic-pumping.html">Septic tank pumping</a>
           </article>
+          <article class="service-card service-card--septic">
+            <div class="service-media">
+              <img src="./images/card-sewer-drain-cleaning.webp" alt="Sewer line and drain repair dig in Salina, Kansas" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Sewer &amp; Drain Cleaning</h3>
+            <p>Sewer backups, plugged lateral lines, yard drains and drain tile. Cleared, or dug up and fixed when clearing won't do it.</p>
+            <a class="card-link" href="sewer-drain-cleaning.html">Sewer and drain cleaning</a>
+          </article>
+          <article class="service-card service-card--septic">
+            <div class="service-media">
+              <img src="./images/card-septic-repair.webp" alt="Septic system repair in Saline County, Kansas" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Septic Repair</h3>
+            <p>Failing drain fields, cracked tanks, broken distribution boxes and crushed lines. We find the part that failed before replacing anything.</p>
+            <a class="card-link" href="septic-repair.html">Septic repair</a>
+          </article>
+          <article class="service-card service-card--septic">
+            <div class="service-media">
+              <img src="./images/card-septic-inspection.webp" alt="Septic inspection on a rural property in Saline County" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Septic Inspection</h3>
+            <p>Buying or selling a place in the country? Know what is in the ground before closing. If the system is fine, we say so.</p>
+            <a class="card-link" href="septic-inspection.html">Septic inspection</a>
+          </article>
+          <article class="service-card service-card--septic">
+            <div class="service-media">
+              <img src="./images/card-septic-perc-test.webp" alt="Perc test and soil testing for a septic system in Saline County" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Perc Test &amp; Soil Testing</h3>
+            <p>The soil test that decides what system your ground will take. Clay and limestone are why it matters out here.</p>
+            <a class="card-link" href="septic-perc-test.html">Perc test and soil testing</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <section class="section" style="background:#fff">
+      <div class="container">
+        <span class="eyebrow">Finishing the job</span>
+        <h2>Site Work</h2>
+        <p class="section-sub">The dirt work around a septic job, and the same equipment on its own: trenching, clearing, tearing down old buildings and building pads.</p>
+        <div class="sitework-grid">
           <article class="service-card">
             <div class="service-media">
-              <img src="images/landClearing.webp" alt="Land clearing in Central Kansas — Mike's Services LLC" loading="lazy" width="640" height="420">
+              <img src="./images/excavation.webp" alt="Excavation and trenching in Central Kansas" loading="lazy" decoding="async" width="800" height="450">
+            </div>
+            <h3>Excavation &amp; Trenching</h3>
+            <p>Utility and water line trenches, footings, driveways and drainage.</p>
+            <a class="card-link" href="excavation.html">Excavation and trenching</a>
+          </article>
+          <article class="service-card">
+            <div class="service-media">
+              <img src="./images/landClearing.webp" alt="Land clearing on a Central Kansas property" loading="lazy" decoding="async" width="800" height="450">
             </div>
             <h3>Land Clearing</h3>
-            <p>Property clearing, pasture clearing, brush removal, and debris hauling for residential and commercial lots across Central Kansas.</p>
-            <a class="btn btn-outline" href="land-clearing.html">Learn More</a>
+            <p>Cedar, brush, tree rows, hedge rows and overgrown pasture.</p>
+            <a class="card-link" href="land-clearing.html">Land clearing</a>
           </article>
-
           <article class="service-card">
             <div class="service-media">
-              <img src="images/demolition.webp" alt="Demolition and removal in Central Kansas — Mike's Services LLC" loading="lazy" width="640" height="420">
+              <img src="./images/demolition.webp" alt="Old farm building demolition in Central Kansas" loading="lazy" decoding="async" width="800" height="450">
             </div>
-            <h3>Demolition & Removal</h3>
-            <p>Small and large demolition, removal, and clean-up work with safe disposal and efficient hauling across Central Kansas.</p>
-            <a class="btn btn-outline" href="demolition.html">Learn More</a>
+            <h3>Farmstead Demolition</h3>
+            <p>Old farm houses, barns, sheds, grain bins and cattle pens. Torn down and hauled off.</p>
+            <a class="card-link" href="demolition.html">Farmstead demolition</a>
           </article>
-
           <article class="service-card">
             <div class="service-media">
-              <img src="images/buildingPad.webp" alt="Building pad and site prep in Central Kansas — Mike's Services LLC" loading="lazy" width="640" height="420">
+              <img src="./images/buildingPad.webp" alt="Building pad and site prep in Central Kansas" loading="lazy" decoding="async" width="800" height="450">
             </div>
-            <h3>Building Pad & Site Prep</h3>
-            <p>Precision grading and compaction for building pads, driveways, and new construction sites. We prep the ground right the first time.</p>
-            <a class="btn btn-outline" href="building-pad.html">Learn More</a>
+            <h3>Building Pad &amp; Site Prep</h3>
+            <p>Graded and compacted pads for shops, pole barns and new homes.</p>
+            <a class="card-link" href="building-pad.html">Building pads and site prep</a>
           </article>
-
         </div>
       </div>
     </section>
@@ -215,20 +260,49 @@
   </main>
 
   <footer class="site-footer">
+    <nav class="footer-nav" aria-label="Site map">
+      <div>
+        <h4>Mike's Services LLC</h4>
+        <p>481 E Euclid Ave, Salina, KS 67401</p>
+        <p><a class="footer-phone" href="tel:7854887925">785-488-7925</a></p>
+        <p>Call any time for a septic emergency.</p>
+        <p><a href="contact.html">Get a free quote</a></p>
+      </div>
+      <div>
+        <h4>Septic Services</h4>
+        <ul>
+          <li><a href="septic.html">Septic Installation</a></li>
+          <li><a href="septic-pumping.html">Septic Tank Pumping</a></li>
+          <li><a href="sewer-drain-cleaning.html">Sewer &amp; Drain Cleaning</a></li>
+          <li><a href="septic-repair.html">Septic Repair</a></li>
+          <li><a href="septic-inspection.html">Septic Inspection</a></li>
+          <li><a href="septic-perc-test.html">Perc Test &amp; Soil Testing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site Work</h4>
+        <ul>
+          <li><a href="excavation.html">Excavation &amp; Trenching</a></li>
+          <li><a href="land-clearing.html">Land Clearing</a></li>
+          <li><a href="demolition.html">Farmstead Demolition</a></li>
+          <li><a href="building-pad.html">Building Pad &amp; Site Prep</a></li>
+          <li><a href="services.html">All Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Mike</a></li>
+          <li><a href="service-area.html">Service Areas</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://www.facebook.com/share/1j1hJFp5p7/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </nav>
     <div class="container footer-inner">
-      <div class="footer-left">
-        <strong>Mike's Services LLC</strong>
-        <div>481 E Euclid Ave, Salina, KS 67401</div>
-        <div><a href="tel:7854887925">785-488-7925</a></div>
-      </div>
-      <div class="footer-right">
-        <!-- FACEBOOK PAGE LINK: replace href below with Facebook page URL when ready -->
-        <a href="https://www.facebook.com/share/1j1hJFp5p7/" target="_blank" rel="noopener">Follow us on Facebook</a>
-        <a href="blog.html">Blog</a>
-        <div class="small">24/7 Septic Emergency: <a href="tel:7854887925" style="color:#FFD700">785-488-7925</a></div>
-        <div class="small">© <span id="year"></span> Mike's Services LLC</div>
-        <div class="small"><a href="https://kansasprairiewebworks.com" target="_blank" rel="noopener" style="color:var(--color-accent);text-decoration:none;">Website by Kansas Prairie Webworks</a></div>
-      </div>
+      <div class="small">&copy; <span id="year"></span> Mike's Services LLC. Salina, Kansas.</div>
+      <div class="small"><a href="https://kansasprairiewebworks.com" target="_blank" rel="noopener" style="color:#F2A65A;text-decoration:none;">Website by Kansas Prairie Webworks</a></div>
     </div>
   </footer>
 

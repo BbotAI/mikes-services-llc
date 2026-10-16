@@ -1,6 +1,6 @@
 # Mike's Services LLC — Project Status
 
-**Last updated:** 2026-10-15
+**Last updated:** 2026-10-16
 **Live:** https://mikeservicesllc.com · Blog https://blog.mikeservicesllc.com
 **Repo:** `BbotAI/mikes-services-llc`, branch `main`, deployed by GitHub Pages
 
@@ -349,6 +349,75 @@ Commits: `be11a1d`, `07a62be`, `82a9a22` here, plus `4f71083`, `70c47f1`,
 **Verified after the run:** 24 cards, all 24 thumbnails HTTP 200, all 24 post
 URLs HTTP 200, every blog link on every service page HTTP 200, 0 posts missing a
 service link, 0 duplicate insertions.
+
+---
+
+## 2026-10-16 — septic-first site pass: layout, card edges, footer site map, no long dashes
+
+**Why:** Mike wants to focus on septic ("do septic all day"), and Search
+Console agrees: septic is about 29% of impressions. The homepage still read as
+a general contractor: one septic card among five equal ones, an H1 splitting
+septic, excavation and land clearing three ways, and a footer with two links.
+Kaleb framed the other services as **the site work that completes a septic
+job**, and said they should not be removed. That framing is now the site's
+structure.
+
+**Homepage (index.html), top to bottom:**
+- H1 is now **Septic Service in Salina & Central Kansas**. The lead still names
+  excavation, land clearing, demolition and building pads, so those terms stay
+  on the page. The title tag is unchanged apart from its dash.
+- **Septic Services:** six image cards (installation plus the five leaves),
+  orange top edge, keyword anchor text. This grid is `#serviceGrid`, so
+  main.js still sees it as non-empty and stays a fallback.
+- **Why Folks Call Mike for Septic:** a navy strip with three points (own
+  truck and equipment, 24/7, straight answers). These are claims the site
+  already made.
+- **Site Work Around Your Septic Job:** the four other services as smaller
+  navy cards.
+- Featured project, testimonials (now 3 across), areas, About and FAQ copy
+  were rewritten septic-first in Mike's plain voice.
+
+**Every page:**
+- **Footer site map** with Septic Services, Site Work and Company columns,
+  identical on all 16 pages. This is Kaleb's "navigation to go throughout
+  the website".
+- Card edges: sibling cards (the septic cross-link cards) now match the
+  service cards. A Septic Installation card leads every service grid, has the
+  orange edge, and links to the five septic pages. The site-work pages'
+  "Other Services" intros now tie back to septic.
+- Hero overlay is left-weighted and darker, so white text holds on bright
+  photos. **Each septic leaf hero now shows its own photo**
+  (`hero-<page>.webp`) instead of the septic installation photo.
+- Inline text links use the brand orange, not browser blue. Breadcrumbs and
+  card sublinks stay plain.
+- `services.html` is now Septic Services (6) + Site Work (4).
+- The contact form's Service Needed list includes all five septic services.
+- `styles.css?v=4`.
+
+**Long dashes: zero in visible text, titles, alt text and JSON-LD on all 16
+pages.** About 200 were rewritten. Prose was done by hand. Titles use
+` | `, alts use `by Mike's Services LLC`, and blog post titles use a colon.
+**`blog-sync.js` now cleans card text with `undash()`** (title dash becomes
+a colon, excerpt dash becomes a comma), because the Blogger posts themselves
+still contain dashes. The Brain's post generator has no rule against them;
+that is a Brain-side change Kaleb has not decided on.
+
+**Photos:** `card-<page>.webp` (800x450) is new for the five leaves. Each
+leaf slot in `photo-sync.config.json` now writes both the hero and the card.
+The perc test upload (2026-10-16 02:53:50 UTC) missed the 02:53:36 sync run by
+14 seconds, and GitHub's next scheduled run was late. `photo-sync.js` was run
+locally to publish it and the excavation upload. That run writes the same
+files and state the Action does.
+
+**Open, needs Kaleb:** the contact page shows hours of **Mon to Sat 7 AM to
+6 PM**, the LocalBusiness JSON-LD says **Mon to Fri 8 to 5 and Sat 8 to 12**,
+and §1 of this file says **Mon to Fri 8 to 5, Sat by appointment**. Google
+sees the conflict. These were left unchanged until Mike confirms the real hours.
+
+**Verified:** `verify-septic-cluster.mjs` passed all 27 checks. 883 local
+links, images and backgrounds checked, 0 missing. Every JSON-LD block
+parses. Desktop and mobile full-page renders show 0 broken images and 0
+errors. Blog-sync dry run found 26/26 posts carded.
 
 ---
 
