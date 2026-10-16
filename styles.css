@@ -1344,3 +1344,35 @@ main .breadcrumb a,
 main .card-sublinks a { text-decoration: none; font-weight: 500; }
 main .breadcrumb a:hover,
 main .card-sublinks a:hover { text-decoration: underline; color: var(--color-accent-dark); }
+
+/* 2026-10-16 (later): every secondary button is filled. Outline buttons read
+   as see-through on the beige and white sections. Orange keeps them distinct
+   from the navy primary button beside them. The hero keeps its white outline,
+   because a filled button over a photo competes with the headline. */
+.btn-outline {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(12,30,50,0.15);
+}
+.btn-outline:hover,
+.btn-outline:focus {
+  background: #8f4c0a;
+  border-color: #8f4c0a;
+  color: #fff;
+}
+.hero--image .btn-outline {
+  background: transparent;
+  box-shadow: none;
+}
+.btn-primary { box-shadow: 0 2px 6px rgba(12,30,50,0.18); }
+
+/* Card links sit on one line at the bottom of every card. */
+.service-card .card-link { white-space: nowrap; }
+.contact-info a.btn,
+.contact-info a.btn:hover,
+.contact-info a.btn:focus { color: #fff; }
+main .breadcrumb li a:not(.btn),
+main p.card-sublinks a:not(.btn) { text-decoration: none; font-weight: 500; }
+main .breadcrumb li a:not(.btn):hover,
+main p.card-sublinks a:not(.btn):hover { text-decoration: underline; color: var(--color-accent-dark); }
