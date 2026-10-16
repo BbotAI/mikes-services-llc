@@ -21,7 +21,14 @@
     "",
     "Transforms are Cloudinary's, applied on the fly. c_fill with g_auto picks",
     "the crop, which matters because clients upload whatever aspect ratio their",
-    "phone produced. The logo uses c_limit so it is scaled, never cropped."
+    "phone produced. The logo uses c_limit so it is scaled, never cropped.",
+    "",
+    "The five hero-septic-* slots (added 2026-10-15) are photo-only: one per",
+    "septic page. They are deliberately NOT rows in the Services sheet, because",
+    "a Services row also starts blog research and changes the post rotation.",
+    "The portal adds them from SUB_PAGE_SLOTS in kpw-client-portal/index.html,",
+    "so a slot name changed there must change here too. Until Mike uploads,",
+    "each file is a copy of the septic installation photo."
   ],
 
   "clientId": "MIKES_SERVICES_LLC",
@@ -62,6 +69,22 @@
     "hero-building-pad-and-site-prep": [
       { "file": "images/hero-service-5.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
       { "file": "images/buildingPad.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+
+    "hero-septic-pumping": [
+      { "file": "images/hero-septic-pumping.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "hero-sewer-drain-cleaning": [
+      { "file": "images/hero-sewer-drain-cleaning.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "hero-septic-repair": [
+      { "file": "images/hero-septic-repair.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "hero-septic-inspection": [
+      { "file": "images/hero-septic-inspection.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" }
+    ],
+    "hero-septic-perc-test": [
+      { "file": "images/hero-septic-perc-test.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" }
     ]
   }
 }

@@ -1,6 +1,6 @@
 # Mike's Services LLC — Project Status
 
-**Last updated:** 2026-10-12
+**Last updated:** 2026-10-15
 **Live:** https://mikeservicesllc.com · Blog https://blog.mikeservicesllc.com
 **Repo:** `BbotAI/mikes-services-llc`, branch `main`, deployed by GitHub Pages
 
@@ -114,6 +114,19 @@ and publishes content for every KPW client. Relevant pieces:
 - **Apps Script version ceiling: 200, hard.** 33 slots left. Read the deployment
   rule in `kpw-agency-brain/CLAUDE.md` before any deploy. `clasp push` costs
   nothing; only `clasp version` consumes a slot.
+
+**Photo sync (website photos from the client portal).** Mike picks one photo
+per slot at portal.kansasprairiewebworks.com -> Website Photos. Each pick is
+saved to his Clients row (`Image Library URLs`, `type: website`) and is live
+immediately: there is no review step. `.github/workflows/photo-sync.yml` runs at
+:15 and :45, asks the Agency Brain `getWebsitePhotos` endpoint for the current
+URL per slot, and overwrites the file(s) mapped in
+`.github/photo-sync.config.json`. The HTML never changes, only image bytes.
+Slots come from two places: one per row in the **Services sheet**
+(`hero-<service-slug>`), plus photo-only sub-page slots from `SUB_PAGE_SLOTS`
+in `kpw-client-portal/index.html`. **A new page needs its own image file and a
+slot in both of those places, never a borrowed `hero-service-N.webp`.** See
+2026-10-15.
 
 **`kpw_credentials`** (separate folder) — `gsc-service-account.json` grants
 read access to all six Search Console properties. `kpw_monthly_report.js`
@@ -336,6 +349,47 @@ Commits: `be11a1d`, `07a62be`, `82a9a22` here, plus `4f71083`, `70c47f1`,
 **Verified after the run:** 24 cards, all 24 thumbnails HTTP 200, all 24 post
 URLs HTTP 200, every blog link on every service page HTTP 200, 0 posts missing a
 service link, 0 duplicate insertions.
+
+---
+
+## 2026-10-15 — septic pages get their own photos and portal slots
+
+**The bug Kaleb caught:** the five septic pages from 2026-10-12 were showing
+other services' photos. `septic-pumping` used `hero-service-2.webp` (land
+clearing), `sewer-drain-cleaning` used `-3` (excavation), `septic-repair` used
+`-4` (demolition), `septic-inspection` used `-5` (building pad) and
+`septic-perc-test` used the orphaned June `septicHero.webp`. `hero-service-N`
+is not a stock pool. Photo sync overwrites each one from a specific service's
+slot.
+
+**Fix, three repos:**
+- **This site:** each page now points at its own file,
+  `images/hero-<page>.webp`, seeded with a copy of `hero-service-1.webp` (the
+  septic installation photo) so every septic page shows a septic photo until
+  Mike uploads. `septicHero.webp` is now unreferenced.
+- **`.github/photo-sync.config.json`:** five new slots, `hero-septic-pumping`,
+  `hero-sewer-drain-cleaning`, `hero-septic-repair`, `hero-septic-inspection`,
+  `hero-septic-perc-test`, each writing its page's file at 1200x675.
+- **`kpw-client-portal`:** `SUB_PAGE_SLOTS` adds those five as cards directly
+  under SEPTIC INSTALLATION HERO on Mike's Website Photos screen. His existing
+  10 slots are unchanged.
+
+**Why not five Services sheet rows:** a Services row also feeds Research.gs,
+Content_Ideas and the blog rotation weight. Five septic rows would have
+started five research jobs and changed what gets posted. These pages only need
+a photo. No Apps Script change and no version slot was used:
+`saveWebsiteImage` accepts any slot name, and
+`getClientContentEligibleEntries_` (Client.gs) already excludes `type: website` entries, so these photos cannot leak into blog posts.
+
+**Verified:** the portal was rendered headless against live data. Mike shows 15
+slots, 10 with photos and the 5 new ones empty under Septic Installation, and
+there were no page errors. Pro Cleaning still shows exactly her 10 slots. A
+`photo-sync.js --dry-run` against the live endpoint reported the 5 slots as
+"not set by the client yet" and changed nothing.
+`verify-septic-cluster.mjs`: all checks pass.
+
+**Next:** Mike uploads five septic photos. Each one reaches the site within
+about 30 minutes, with nothing for Kaleb to do.
 
 ---
 
