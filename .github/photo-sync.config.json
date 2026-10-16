@@ -29,7 +29,10 @@
     "The portal adds them from SUB_PAGE_SLOTS in kpw-client-portal/index.html,",
     "so a slot name changed there must change here too. Until Mike uploads,",
     "each file is a copy of the septic installation photo. Each slot also writes",
-    "card-<page>.webp, the 800x450 thumbnail the homepage septic cards use."
+    "card-<page>.webp, the 800x450 thumbnail the homepage septic cards use.",
+    "",
+    "og-*.jpg (1200x630, JPEG for Facebook/iMessage) are the link-share",
+    "previews in each page's og:image. Added 2026-10-16."
   ],
 
   "clientId": "MIKES_SERVICES_LLC",
@@ -45,7 +48,8 @@
       { "file": "images/featured-1.webp", "transform": "w_1200,h_674,c_fill,g_auto,f_webp,q_auto:eco" }
     ],
     "about-team": [
-      { "file": "images/about-team.webp", "transform": "w_720,h_1060,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/about-team.webp", "transform": "w_720,h_1060,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-about.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "blog-placeholder": [
       { "file": "images/blog-placeholder.webp", "transform": "w_600,h_400,c_fill,g_auto,f_webp,q_auto:eco" }
@@ -53,44 +57,54 @@
 
     "hero-septic-installation": [
       { "file": "images/hero-service-1.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/septic.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/septic.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-septic.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "hero-land-clearing": [
       { "file": "images/hero-service-2.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/landClearing.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/landClearing.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-land-clearing.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "hero-excavation-and-trenching": [
       { "file": "images/hero-service-3.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/excavation.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/excavation.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-excavation.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "hero-demolition": [
       { "file": "images/hero-service-4.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/demolition.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/demolition.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-demolition.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "hero-building-pad-and-site-prep": [
       { "file": "images/hero-service-5.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/buildingPad.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/buildingPad.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-building-pad.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
 
     "hero-septic-pumping": [
       { "file": "images/hero-septic-pumping.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/card-septic-pumping.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/card-septic-pumping.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-septic-pumping.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "hero-sewer-drain-cleaning": [
       { "file": "images/hero-sewer-drain-cleaning.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/card-sewer-drain-cleaning.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/card-sewer-drain-cleaning.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-sewer-drain-cleaning.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "hero-septic-repair": [
       { "file": "images/hero-septic-repair.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/card-septic-repair.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/card-septic-repair.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-septic-repair.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "hero-septic-inspection": [
       { "file": "images/hero-septic-inspection.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/card-septic-inspection.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/card-septic-inspection.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-septic-inspection.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ],
     "hero-septic-perc-test": [
       { "file": "images/hero-septic-perc-test.webp", "transform": "w_1200,h_675,c_fill,g_auto,f_webp,q_auto:eco" },
-      { "file": "images/card-septic-perc-test.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" }
+      { "file": "images/card-septic-perc-test.webp", "transform": "w_800,h_450,c_fill,g_auto,f_webp,q_auto:eco" },
+      { "file": "images/og-septic-perc-test.jpg", "transform": "w_1200,h_630,c_fill,g_auto,f_jpg,q_80" }
     ]
   }
 }

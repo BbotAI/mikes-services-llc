@@ -23,7 +23,7 @@ Salina, Kansas. Owner-operated, works the equipment himself.
 | Email | mradams@twinvalley.net |
 | Facebook | https://www.facebook.com/share/1j1hJFp5p7/ |
 | Service area | Saline, Ottawa, Lincoln, Dickinson, Ellsworth, Cloud counties |
-| Hours | Mon–Fri 8–5, Sat by appointment, 24/7 emergencies |
+| Hours | Mon to Fri 8 to 5, Sat 8 to 12, 24/7 emergency septic (confirmed by Kaleb 2026-10-16) |
 
 **Commercial:** $800 setup (paid) + **$250/month** subscription, two months paid
 as of 2026-09. **Stripe auto-invoices on the 15th of each month.** A monthly SEO
@@ -409,10 +409,27 @@ The perc test upload (2026-10-16 02:53:50 UTC) missed the 02:53:36 sync run by
 locally to publish it and the excavation upload. That run writes the same
 files and state the Action does.
 
-**Open, needs Kaleb:** the contact page shows hours of **Mon to Sat 7 AM to
-6 PM**, the LocalBusiness JSON-LD says **Mon to Fri 8 to 5 and Sat 8 to 12**,
-and §1 of this file says **Mon to Fri 8 to 5, Sat by appointment**. Google
-sees the conflict. These were left unchanged until Mike confirms the real hours.
+**Hours, resolved the same day:** Kaleb confirmed **Mon to Fri 8 to 5, Sat 8
+to 12, plus 24/7 emergency septic**. The contact page, the footer on every
+page and §1 now match the JSON-LD, which already said this.
+
+**Link previews and search snippet (same day):**
+- No page had Open Graph or Twitter tags, so a shared link showed no photo.
+  All 16 pages now have them, each with a 1200x630 JPEG
+  (`images/og-*.jpg`) built from Mike's own upload. Photo-sync writes these
+  too (36 targets), so they follow his photos.
+- **Homepage title changed** to `Mike's Services LLC | Septic & Excavation in
+  Salina, KS`. GSC (2026-07-15 to 10-14) shows the homepage's traffic is brand
+  searches: "mikes" 35 impressions at position 5.5, plus "mikes septic" and
+  "mikes excavating". The old title did not contain the name, and it nearly
+  duplicated septic.html's title, so the two competed for "salina septic"
+  (homepage at 32.9) and "saline county septic services" (34.6). septic.html
+  now owns those terms alone. **Watch:** brand queries should hold or improve
+  by mid-November. If "mikes" drops, revisit.
+- The homepage LocalBusiness description is septic-first and names 24/7
+  emergency septic.
+- Hyphens used as dashes in two titles, an About and a Service Area
+  description, and five leaf alts were rewritten.
 
 **Verified:** `verify-septic-cluster.mjs` passed all 27 checks. 883 local
 links, images and backgrounds checked, 0 missing. Every JSON-LD block
