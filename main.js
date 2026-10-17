@@ -246,3 +246,72 @@ document.addEventListener('DOMContentLoaded', function () {
     img.src = url;
   });
 }());
+/* Share button for the home-screen app.
+   Saved to a phone's home screen, the site opens with no browser bar, so
+   there is no share button and no address bar to copy from. This adds one,
+   only in that mode. Uses the phone's own share sheet; falls back to
+   copying the link. */
+(function () {
+  var standalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+    window.navigator.standalone === true;
+  if (!standalone || document.getElementById('app-share')) return;
+
+  var COLOR = '#1C3D5A';
+  var css = document.createElement('style');
+  css.textContent =
+    '#app-share{position:fixed;left:16px;bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:9998;' +
+    'width:48px;height:48px;border-radius:50%;border:0;background:' + COLOR + ';color:#fff;cursor:pointer;' +
+    'display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.28);-webkit-tap-highlight-color:transparent}' +
+    '#app-share svg{width:22px;height:22px}' +
+    '#app-share-toast{position:fixed;left:50%;bottom:calc(140px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);' +
+    'z-index:9999;background:#1A252F;color:#fff;font:600 .9rem/1.3 system-ui,sans-serif;padding:.6rem 1rem;border-radius:20px;' +
+    'box-shadow:0 4px 14px rgba(0,0,0,.3);opacity:0;transition:opacity .2s;pointer-events:none}' +
+    '#app-share-toast.on{opacity:1}' +
+    '@media print{#app-share{display:none}}';
+  document.head.appendChild(css);
+
+  var btn = document.createElement('button');
+  btn.id = 'app-share';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Share this page');
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+
+  var toast = document.createElement('div');
+  toast.id = 'app-share-toast';
+  toast.setAttribute('role', 'status');
+
+  function say(msg) {
+    toast.textContent = msg;
+    toast.classList.add('on');
+    setTimeout(function () { toast.classList.remove('on'); }, 2200);
+  }
+
+  function pageUrl() {
+    var link = document.querySelector('link[rel="canonical"]');
+    return (link && link.href) || location.href.split('#')[0];
+  }
+
+  function copy(url) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { say('Link copied'); },
+        function () { window.prompt('Copy this link:', url); });
+    } else {
+      window.prompt('Copy this link:', url);
+    }
+  }
+
+  btn.addEventListener('click', function () {
+    var url = pageUrl();
+    if (navigator.share) {
+      navigator.share({ title: document.title, url: url }).catch(function (err) {
+        if (!err || err.name !== 'AbortError') copy(url);
+      });
+    } else {
+      copy(url);
+    }
+  });
+
+  function mount() { document.body.appendChild(btn); document.body.appendChild(toast); }
+  if (document.body) mount(); else document.addEventListener('DOMContentLoaded', mount);
+}());

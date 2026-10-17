@@ -1,6 +1,6 @@
 # Mike's Services LLC — Project Status
 
-**Last updated:** 2026-10-16
+**Last updated:** 2026-10-17
 **Live:** https://mikeservicesllc.com · Blog https://blog.mikeservicesllc.com
 **Repo:** `BbotAI/mikes-services-llc`, branch `main`, deployed by GitHub Pages
 
@@ -351,6 +351,26 @@ URLs HTTP 200, every blog link on every service page HTTP 200, 0 posts missing a
 service link, 0 duplicate insertions.
 
 ---
+
+## 2026-10-17 — share button when opened from the home-screen icon
+
+**Why:** saved to a phone's home screen, the site opens as an app with no
+browser bar, so there was no way to share or copy the page link. Desktop and
+the normal phone browser were never affected.
+
+**Fix:** a self-contained block appended to the end of `main.js` adds a round
+Share button bottom-left, above the Call/Text bar, **only** when
+`(display-mode: standalone)` matches or `navigator.standalone` is true. Tap
+opens the phone's share sheet (`navigator.share`) with the canonical URL;
+where that is missing it copies the link and shows "Link copied", with a
+`prompt()` as the last fallback. Button colour #1C3D5A (site navy). `main.js` cache query
+bumped to `?v=3` on every page, because Cloudflare would otherwise serve
+the old script for hours (see the stale-asset trap). Same code on
+kansasprairiewebworks.com, mikeservicesllc.com and procleaningsalinaks.com.
+
+**Tested** at 390px in headless Edge with `navigator.standalone` forced on all
+three sites. Not yet confirmed on a real phone: open from the home-screen
+icon, tap Share.
 
 ## 2026-10-16 — septic-first site pass: layout, card edges, footer site map, no long dashes
 
