@@ -401,16 +401,20 @@ revert.
 - **Cloudflare:** origin p50 is 123 ms and p95 is 208 ms. The 3 MB on
   `og-septic.jpg` is about 48 fetches of a 64 KB link-preview image, from
   social crawlers and shares. That is healthy, so no action.
-- **The report narrative** called both mix effects slips. That cost Mike
-  nothing this time, but next month the report could say "slipped" again just
-  because pages were added. **Proposed for Kaleb, not done:** in
-  `kpw_monthly_report.js`, compute position change on queries present in both
-  periods, and skip "Biggest move" when a page's new impressions come mostly
-  from outside the service area. Pipeline left untouched per §6.
+- **The report narrative** called both mix effects slips. **Fixed the same
+  day at Kaleb's request:** position is now compared like-for-like (the same
+  searches in both months), and so is Biggest move. Re-run on November's data,
+  it reads "improved from 32.8 to 24.6 on the searches you showed up for in
+  both months". Details are in kpw-agency-brain `SYSTEM_STATUS.md`, 2026-11-15.
 
-**Still outstanding (Kaleb's to run):** point the 14 septic blog posts at
-their matching leaf pages via `blogLinkApply()` (§2026-10-12). GBP is still
-the biggest lever. LilyPad has a map-pack presence, and Mike has none.
+**Blog leaf links: corrected.** "Run `blogLinkApply()`" was wrong: the
+script only knew the hub pages, so it would have changed nothing. **0 of 26
+posts link a septic leaf.** The script now maps 5 posts to their leaf
+(inspection, perc test, repair, and pumping x2). It is staged in
+kpw-agency-brain, and Kaleb needs to do `clasp push`, audit, then apply. No
+post covers sewer and drain cleaning, which is the content gap for the page
+with 2,054 impressions. GBP is still the biggest lever: LilyPad shows up on
+the map, and Mike has no listing there.
 
 ---
 
