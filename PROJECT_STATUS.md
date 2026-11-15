@@ -410,8 +410,8 @@ revert.
 **Blog leaf links: corrected.** "Run `blogLinkApply()`" was wrong: the
 script only knew the hub pages, so it would have changed nothing. **0 of 26
 posts link a septic leaf.** The script now maps 5 posts to their leaf
-(inspection, perc test, repair, and pumping x2). It is staged in
-kpw-agency-brain, and Kaleb needs to do `clasp push`, audit, then apply. No
+(inspection, perc test, repair, and pumping x2). **Applied and verified
+live 2026-11-15**: 5 posts changed, and all four leaf pages return 200. No
 post covers sewer and drain cleaning, which is the content gap for the page
 with 2,054 impressions. GBP is still the biggest lever: LilyPad shows up on
 the map, and Mike has no listing there.
