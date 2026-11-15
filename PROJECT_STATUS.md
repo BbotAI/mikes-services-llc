@@ -1,6 +1,6 @@
 # Mike's Services LLC — Project Status
 
-**Last updated:** 2026-10-17
+**Last updated:** 2026-11-15
 **Live:** https://mikeservicesllc.com · Blog https://blog.mikeservicesllc.com
 **Repo:** `BbotAI/mikes-services-llc`, branch `main`, deployed by GitHub Pages
 
@@ -349,6 +349,68 @@ Commits: `be11a1d`, `07a62be`, `82a9a22` here, plus `4f71083`, `70c47f1`,
 **Verified after the run:** 24 cards, all 24 thumbnails HTTP 200, all 24 post
 URLs HTTP 200, every blog link on every service page HTTP 200, 0 posts missing a
 service link, 0 duplicate insertions.
+
+---
+
+## 2026-11-15 — November report read against fresh GSC, one title change
+
+Kaleb flagged the 11-15 report (already sent): impressions up 376% to 3,190,
+clicks 16 (down 6%), average position "slipped" 15% to 21.1, and Excavation
+"slipped 17 places, 14 to 31". Re-pulled GSC (10-15 to 11-12 vs 09-17 to
+10-14, page, query and country splits) before touching anything.
+
+**The slips are mix effects, not lost rankings. Nothing on the site broke.**
+
+- **Average position:** the new `sewer-drain-cleaning.html` drew **2,054 of
+  the 3,190 impressions** (64%) at position 17.7. Adding a page that ranks
+  17-18 on 2,000 new impressions drags the site average toward 18 even if no
+  existing ranking moved. Per-query, brand terms held or improved:
+  `mikes` 30 -> 45 impr at 6.3 -> 6.6, `mike septic service` 25.5 -> 17.9.
+  The 10-16 watch item (homepage title change; brand must hold by
+  mid-November) **passes**.
+- **Excavation 14 -> 31:** the page went 62 -> 79 impressions, and the new ones
+  are `dirt contractor augusta ks` (88.5), `excavation services augusta ks`
+  (77.5), `excavation company augusta ks` (97.0). Augusta and Haysville are
+  outside his six counties. Google is testing him on far-off searches at page
+  8-10, and those pull the page average down. In-area terms are unchanged.
+  It is the same thing as the "ignore these impressions" list in §5.
+- **Sewer page: 2,054 impressions, 0 clicks.** 2,020 are US, 1,922 are
+  mobile at 16.6. Many queries sit at 6-15 (`sewer backup cleaning services
+  near me` 6.5, `yard drain cleaning services` 6.8). Most of this is
+  "near me" and generic indoor plumbing (kitchen, bathroom, roof, pool deck
+  drains) shown to people who are not in Saline County. They see "Salina, KS"
+  and skip it, correctly. **A title rewrite will not convert out-of-area
+  searchers. Left alone.** Its six-week bar date is 2026-11-23: position
+  under 30 is met (17.7), and the click is not yet.
+
+**Changed:** `septic.html` title, og:title and twitter:title went from
+`Septic Service in Salina & Saline County, KS` to **`Mike's Septic Service |
+Salina & Saline County, KS`**. People search his name with septic
+(`mike septic` 30 impr, `mike septic service` 29 impr), and Google sends them
+to septic.html at position 38.5 and 17.0, and to services.html at 77-82,
+because no page title says "Mike's Septic". All the geo terms stay. Sitemap
+lastmod is bumped. **Watch:** by mid-December, `mike septic` should move up
+from 38.5, and `saline county septic services` must not drop. If it does,
+revert.
+
+**Not changed, and why:**
+- **GSC "Alternate page with proper canonical tag" on `/index.html`**
+  (validation failed 10-19). The same non-error is explained in §6a. Re-checked
+  live today: `/index.html` canonicals to `/`, and no page links to
+  `index.html`. **Do not request validation again.**
+- **Cloudflare:** origin p50 is 123 ms and p95 is 208 ms. The 3 MB on
+  `og-septic.jpg` is about 48 fetches of a 64 KB link-preview image, from
+  social crawlers and shares. That is healthy, so no action.
+- **The report narrative** called both mix effects slips. That cost Mike
+  nothing this time, but next month the report could say "slipped" again just
+  because pages were added. **Proposed for Kaleb, not done:** in
+  `kpw_monthly_report.js`, compute position change on queries present in both
+  periods, and skip "Biggest move" when a page's new impressions come mostly
+  from outside the service area. Pipeline left untouched per §6.
+
+**Still outstanding (Kaleb's to run):** point the 14 septic blog posts at
+their matching leaf pages via `blogLinkApply()` (§2026-10-12). GBP is still
+the biggest lever. LilyPad has a map-pack presence, and Mike has none.
 
 ---
 
